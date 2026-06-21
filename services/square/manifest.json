@@ -1,0 +1,14 @@
+{
+  "name": "square",
+  "version": "1.0",
+  "image": "parlel/square:1.0",
+  "size_kb": 64,
+  "port": 4766,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "SQUARE_ACCESS_TOKEN": "parlel-square-token",
+    "SQUARE_BASE_URL": "http://127.0.0.1:4766"
+  }
+}

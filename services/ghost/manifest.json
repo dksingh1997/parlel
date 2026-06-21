@@ -1,0 +1,16 @@
+{
+  "name": "ghost",
+  "version": "1",
+  "image": "parlel/ghost:1",
+  "size_kb": 48,
+  "port": 4845,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "GHOST_CONTENT_API_KEY": "parlel",
+    "GHOST_ADMIN_API_KEY": "parlel:parlel",
+    "GHOST_URL": "http://127.0.0.1:4845",
+    "GHOST_BASE_URL": "http://127.0.0.1:4845"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "gravity-forms",
+  "version": "1",
+  "image": "parlel/gravity-forms:1",
+  "size_kb": 64,
+  "port": 4854,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "GRAVITY_FORMS_CONSUMER_KEY": "parlel",
+    "GRAVITY_FORMS_CONSUMER_SECRET": "parlel",
+    "GRAVITY_FORMS_BASE_URL": "http://127.0.0.1:4854"
+  }
+}

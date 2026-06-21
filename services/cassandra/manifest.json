@@ -1,0 +1,14 @@
+{
+  "name": "cassandra",
+  "version": "4",
+  "image": "parlel/cassandra:4",
+  "size_kb": 100,
+  "port": 9042,
+  "protocol": "tcp",
+  "healthcheck": "SELECT release_version FROM system.local",
+  "startup_time_ms": 500,
+  "env_vars": {
+    "CASSANDRA_CLUSTER_NAME": "parlel-cluster",
+    "CASSANDRA_DC": "datacenter1"
+  }
+}

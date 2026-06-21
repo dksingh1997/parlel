@@ -1,0 +1,15 @@
+{
+  "name": "freshbooks",
+  "version": "1",
+  "image": "parlel/freshbooks:1",
+  "size_kb": 48,
+  "port": 4872,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "FRESHBOOKS_TOKEN": "parlel",
+    "FRESHBOOKS_ACCOUNT_ID": "parlelAcct",
+    "FRESHBOOKS_BASE_URL": "http://127.0.0.1:4872"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "convertkit",
+  "version": "1.0",
+  "image": "parlel/convertkit:1.0",
+  "size_kb": 48,
+  "port": 4667,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "CONVERTKIT_API_KEY": "parlel_test_public_api_key",
+    "CONVERTKIT_API_SECRET": "parlel_test_secret_api_key",
+    "CONVERTKIT_BASE_URL": "http://127.0.0.1:4667",
+    "CONVERTKIT_API_BASE_URL": "http://127.0.0.1:4667/v3"
+  }
+}

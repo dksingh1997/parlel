@@ -1,0 +1,15 @@
+{
+  "name": "firestore",
+  "version": "0.1",
+  "image": "parlel/firestore:0.1",
+  "size_kb": 90,
+  "port": 4581,
+  "protocol": "http",
+  "healthcheck": "/_parlel/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "FIRESTORE_EMULATOR_HOST": "127.0.0.1:4581",
+    "GOOGLE_CLOUD_PROJECT": "parlel",
+    "GCLOUD_PROJECT": "parlel"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "recurly",
+  "version": "1",
+  "image": "parlel/recurly:1",
+  "size_kb": 48,
+  "port": 4870,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "RECURLY_API_KEY": "parlel",
+    "RECURLY_BASE_URL": "http://127.0.0.1:4870"
+  }
+}

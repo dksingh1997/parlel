@@ -1,0 +1,14 @@
+{
+  "name": "deepseek",
+  "version": "1",
+  "image": "parlel/deepseek:1",
+  "size_kb": 64,
+  "port": 4752,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "DEEPSEEK_API_KEY": "sk-parlel",
+    "DEEPSEEK_BASE_URL": "http://127.0.0.1:4752"
+  }
+}

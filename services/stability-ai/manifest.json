@@ -1,0 +1,14 @@
+{
+  "name": "stability-ai",
+  "version": "1",
+  "image": "parlel/stability-ai:1.0",
+  "size_kb": 48,
+  "port": 4862,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "STABILITY_API_KEY": "sk-parlel-stability",
+    "STABILITY_BASE_URL": "http://127.0.0.1:4862"
+  }
+}

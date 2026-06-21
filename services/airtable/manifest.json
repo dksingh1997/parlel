@@ -1,0 +1,15 @@
+{
+  "name": "airtable",
+  "version": "0.1",
+  "image": "parlel/airtable:0.1",
+  "size_kb": 72,
+  "port": 4611,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "AIRTABLE_API_KEY": "parlel",
+    "AIRTABLE_ENDPOINT_URL": "http://127.0.0.1:4611",
+    "AIRTABLE_BASE_ID": "appParlel"
+  }
+}

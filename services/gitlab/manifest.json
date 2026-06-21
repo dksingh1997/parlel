@@ -1,0 +1,15 @@
+{
+  "name": "gitlab",
+  "version": "1",
+  "image": "parlel/gitlab:1",
+  "size_kb": 64,
+  "port": 4768,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "GITLAB_TOKEN": "glpat-parlel",
+    "GITLAB_API_URL": "http://127.0.0.1:4768",
+    "CI_API_V4_URL": "http://127.0.0.1:4768/api/v4"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "opsgenie",
+  "version": "1",
+  "image": "parlel/opsgenie:1",
+  "size_kb": 48,
+  "port": 4880,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "OPSGENIE_API_KEY": "parlel",
+    "OPSGENIE_BASE_URL": "http://127.0.0.1:4880"
+  }
+}

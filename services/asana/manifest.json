@@ -1,0 +1,14 @@
+{
+  "name": "asana",
+  "version": "1",
+  "image": "parlel/asana:1",
+  "size_kb": 64,
+  "port": 4789,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "ASANA_ACCESS_TOKEN": "asana_parlel",
+    "ASANA_BASE_URL": "http://127.0.0.1:4789"
+  }
+}

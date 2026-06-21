@@ -1,0 +1,15 @@
+{
+  "name": "activecampaign",
+  "version": "1.0",
+  "image": "parlel/activecampaign:1.0",
+  "size_kb": 64,
+  "port": 4659,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "ACTIVECAMPAIGN_API_URL": "http://127.0.0.1:4659",
+    "ACTIVECAMPAIGN_API_TOKEN": "parlel-test-api-token",
+    "ACTIVECAMPAIGN_ACCOUNT": "parlel-test"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "rabbitmq",
+  "version": "3.13",
+  "image": "parlel/rabbitmq:3.13",
+  "size_kb": 90,
+  "port": 5672,
+  "protocol": "tcp",
+  "healthcheck": "rabbitmq-diagnostics -q ping",
+  "startup_time_ms": 300,
+  "env_vars": {
+    "RABBITMQ_DEFAULT_USER": "parlel",
+    "RABBITMQ_DEFAULT_PASS": "parlel",
+    "RABBITMQ_DEFAULT_VHOST": "/"
+  }
+}

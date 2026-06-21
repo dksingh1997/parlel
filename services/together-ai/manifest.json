@@ -1,0 +1,14 @@
+{
+  "name": "together-ai",
+  "version": "1",
+  "image": "parlel/together-ai:1.0",
+  "size_kb": 52,
+  "port": 4863,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "TOGETHER_API_KEY": "parlel-together",
+    "TOGETHER_BASE_URL": "http://127.0.0.1:4863/v1"
+  }
+}

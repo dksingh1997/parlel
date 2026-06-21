@@ -1,0 +1,11 @@
+{
+  "name": "sqlite",
+  "version": "3",
+  "image": "parlel/sqlite:3",
+  "size_kb": 30,
+  "port": 0,
+  "protocol": "embedded",
+  "healthcheck": "SELECT 1",
+  "startup_time_ms": 0,
+  "env_vars": {}
+}

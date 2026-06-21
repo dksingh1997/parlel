@@ -1,0 +1,14 @@
+{
+  "name": "wise",
+  "version": "1",
+  "image": "parlel/wise:1",
+  "size_kb": 48,
+  "port": 4867,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "WISE_API_TOKEN": "parlel",
+    "WISE_BASE_URL": "http://127.0.0.1:4867"
+  }
+}

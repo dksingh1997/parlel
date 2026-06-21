@@ -1,0 +1,14 @@
+{
+  "name": "braintree",
+  "version": "1",
+  "image": "parlel/braintree:1",
+  "size_kb": 48,
+  "port": 4868,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "BRAINTREE_API_KEY": "parlel",
+    "BRAINTREE_BASE_URL": "http://127.0.0.1:4868"
+  }
+}

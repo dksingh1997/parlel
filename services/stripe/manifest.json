@@ -1,0 +1,15 @@
+{
+  "name": "stripe",
+  "version": "1.0",
+  "image": "parlel/stripe:1.0",
+  "size_kb": 64,
+  "port": 4757,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "STRIPE_API_KEY": "sk_test_parlel",
+    "STRIPE_SECRET_KEY": "sk_test_parlel",
+    "STRIPE_BASE_URL": "http://127.0.0.1:4757"
+  }
+}

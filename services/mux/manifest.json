@@ -1,0 +1,15 @@
+{
+  "name": "mux",
+  "version": "1",
+  "image": "parlel/mux:1",
+  "size_kb": 48,
+  "port": 4839,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "MUX_TOKEN_ID": "parlel",
+    "MUX_TOKEN_SECRET": "parlel",
+    "MUX_BASE_URL": "http://127.0.0.1:4839"
+  }
+}

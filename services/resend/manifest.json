@@ -1,0 +1,14 @@
+{
+  "name": "resend",
+  "version": "1.0",
+  "image": "parlel/resend:1.0",
+  "size_kb": 64,
+  "port": 4651,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "RESEND_API_KEY": "re_parlel_test_key",
+    "RESEND_BASE_URL": "http://127.0.0.1:4651"
+  }
+}

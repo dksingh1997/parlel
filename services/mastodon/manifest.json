@@ -1,0 +1,14 @@
+{
+  "name": "mastodon",
+  "version": "1",
+  "image": "parlel/mastodon:1",
+  "size_kb": 48,
+  "port": 4806,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "MASTODON_ACCESS_TOKEN": "parlel",
+    "MASTODON_BASE_URL": "http://127.0.0.1:4806"
+  }
+}

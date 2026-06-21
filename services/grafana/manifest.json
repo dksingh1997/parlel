@@ -1,0 +1,15 @@
+{
+  "name": "grafana",
+  "version": "1",
+  "image": "parlel/grafana:1",
+  "size_kb": 48,
+  "port": 4879,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "GRAFANA_TOKEN": "parlel",
+    "GRAFANA_API_KEY": "parlel",
+    "GRAFANA_BASE_URL": "http://127.0.0.1:4879"
+  }
+}

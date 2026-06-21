@@ -1,0 +1,14 @@
+{
+  "name": "perplexity",
+  "version": "1",
+  "image": "parlel/perplexity:1",
+  "size_kb": 64,
+  "port": 4751,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "PERPLEXITY_API_KEY": "pplx-parlel",
+    "PERPLEXITY_BASE_URL": "http://127.0.0.1:4751"
+  }
+}

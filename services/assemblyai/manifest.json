@@ -1,0 +1,14 @@
+{
+  "name": "assemblyai",
+  "version": "1",
+  "image": "parlel/assemblyai:1.0",
+  "size_kb": 48,
+  "port": 4858,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "ASSEMBLYAI_API_KEY": "parlel_assemblyai",
+    "ASSEMBLYAI_BASE_URL": "http://127.0.0.1:4858"
+  }
+}

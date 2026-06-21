@@ -1,0 +1,15 @@
+{
+  "name": "box",
+  "version": "1",
+  "image": "parlel/box:1",
+  "size_kb": 48,
+  "port": 4837,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "BOX_ACCESS_TOKEN": "parlel",
+    "BOX_BASE_URL": "http://127.0.0.1:4837",
+    "BOX_UPLOAD_URL": "http://127.0.0.1:4837"
+  }
+}

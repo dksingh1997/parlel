@@ -1,0 +1,16 @@
+{
+  "name": "mixpanel",
+  "version": "1.0",
+  "image": "parlel/mixpanel:1.0",
+  "size_kb": 64,
+  "port": 4808,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "MIXPANEL_TOKEN": "parlel",
+    "MIXPANEL_API_SECRET": "parlel-secret",
+    "MIXPANEL_HOST": "http://127.0.0.1:4808",
+    "MIXPANEL_BASE_URL": "http://127.0.0.1:4808"
+  }
+}

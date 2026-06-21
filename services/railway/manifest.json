@@ -1,0 +1,15 @@
+{
+  "name": "railway",
+  "version": "1",
+  "image": "parlel/railway:1",
+  "size_kb": 48,
+  "port": 4882,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "RAILWAY_TOKEN": "parlel",
+    "RAILWAY_API_TOKEN": "parlel",
+    "RAILWAY_BASE_URL": "http://127.0.0.1:4882"
+  }
+}

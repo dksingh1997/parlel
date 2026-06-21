@@ -1,0 +1,14 @@
+{
+  "name": "render",
+  "version": "1",
+  "image": "parlel/render:1",
+  "size_kb": 48,
+  "port": 4881,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "RENDER_API_KEY": "parlel",
+    "RENDER_BASE_URL": "http://127.0.0.1:4881"
+  }
+}

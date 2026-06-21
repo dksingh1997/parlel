@@ -1,0 +1,14 @@
+{
+  "name": "cal-com",
+  "version": "1",
+  "image": "parlel/cal-com:1",
+  "size_kb": 64,
+  "port": 4849,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "CAL_COM_API_KEY": "cal_parlel",
+    "CAL_COM_BASE_URL": "http://127.0.0.1:4849"
+  }
+}

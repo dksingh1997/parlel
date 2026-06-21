@@ -1,0 +1,14 @@
+{
+  "name": "mistral",
+  "version": "1",
+  "image": "parlel/mistral:1",
+  "size_kb": 64,
+  "port": 4755,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "MISTRAL_API_KEY": "parlel",
+    "MISTRAL_BASE_URL": "http://127.0.0.1:4755/v1"
+  }
+}

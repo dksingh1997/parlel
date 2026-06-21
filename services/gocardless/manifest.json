@@ -1,0 +1,15 @@
+{
+  "name": "gocardless",
+  "version": "1",
+  "image": "parlel/gocardless:1",
+  "size_kb": 48,
+  "port": 4871,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "GOCARDLESS_ACCESS_TOKEN": "parlel",
+    "GOCARDLESS_VERSION": "2015-07-06",
+    "GOCARDLESS_BASE_URL": "http://127.0.0.1:4871"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "redis",
+  "version": "7",
+  "image": "parlel/redis:7",
+  "size_kb": 50,
+  "port": 6379,
+  "protocol": "tcp",
+  "healthcheck": "PING",
+  "startup_time_ms": 500,
+  "env_vars": {}
+}

@@ -1,0 +1,14 @@
+{
+  "name": "flutterwave",
+  "version": "1",
+  "image": "parlel/flutterwave:1",
+  "size_kb": 48,
+  "port": 4874,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "FLUTTERWAVE_SECRET_KEY": "parlel",
+    "FLUTTERWAVE_BASE_URL": "http://127.0.0.1:4874"
+  }
+}

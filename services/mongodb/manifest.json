@@ -1,0 +1,15 @@
+{
+  "name": "mongodb",
+  "version": "7",
+  "image": "parlel/mongodb:7",
+  "size_kb": 90,
+  "port": 27017,
+  "protocol": "tcp",
+  "healthcheck": "{ ping: 1 }",
+  "startup_time_ms": 300,
+  "env_vars": {
+    "MONGO_INITDB_ROOT_USERNAME": "parlel",
+    "MONGO_INITDB_ROOT_PASSWORD": "parlel",
+    "MONGO_INITDB_DATABASE": "parlel"
+  }
+}

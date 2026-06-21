@@ -1,0 +1,15 @@
+{
+  "name": "mailjet",
+  "version": "1.0",
+  "image": "parlel/mailjet:1.0",
+  "size_kb": 64,
+  "port": 4829,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "MAILJET_API_KEY": "parlel-key",
+    "MAILJET_SECRET_KEY": "parlel-secret",
+    "MAILJET_BASE_URL": "http://127.0.0.1:4829"
+  }
+}

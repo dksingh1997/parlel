@@ -1,0 +1,14 @@
+{
+  "name": "docker-registry",
+  "version": "1",
+  "image": "parlel/docker-registry:1",
+  "size_kb": 64,
+  "port": 4775,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "DOCKER_REGISTRY_URL": "http://127.0.0.1:4775",
+    "REGISTRY_HTTP_ADDR": "127.0.0.1:4775"
+  }
+}

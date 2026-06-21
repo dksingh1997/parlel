@@ -1,0 +1,14 @@
+{
+  "name": "clickup",
+  "version": "1",
+  "image": "parlel/clickup:1",
+  "size_kb": 64,
+  "port": 4790,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "CLICKUP_API_TOKEN": "pk_parlel",
+    "CLICKUP_BASE_URL": "http://127.0.0.1:4790"
+  }
+}

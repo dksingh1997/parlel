@@ -1,0 +1,14 @@
+{
+  "name": "elasticsearch",
+  "version": "8",
+  "image": "parlel/elasticsearch:8",
+  "size_kb": 80,
+  "port": 9200,
+  "protocol": "http",
+  "healthcheck": "/_cluster/health",
+  "startup_time_ms": 200,
+  "env_vars": {
+    "ELASTIC_PASSWORD": "parlel",
+    "xpack.security.enabled": "false"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "snowflake",
+  "version": "1.0",
+  "image": "parlel/snowflake:1.0",
+  "size_kb": 64,
+  "port": 4811,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "SNOWFLAKE_TOKEN": "parlel",
+    "SNOWFLAKE_ACCOUNT": "parlel",
+    "SNOWFLAKE_HOST": "http://127.0.0.1:4811",
+    "SNOWFLAKE_BASE_URL": "http://127.0.0.1:4811"
+  }
+}

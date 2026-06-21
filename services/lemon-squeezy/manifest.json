@@ -1,0 +1,14 @@
+{
+  "name": "lemon-squeezy",
+  "version": "1",
+  "image": "parlel/lemon-squeezy:1",
+  "size_kb": 48,
+  "port": 4873,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "LEMONSQUEEZY_API_KEY": "parlel",
+    "LEMONSQUEEZY_BASE_URL": "http://127.0.0.1:4873"
+  }
+}

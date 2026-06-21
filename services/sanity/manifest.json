@@ -1,0 +1,16 @@
+{
+  "name": "sanity",
+  "version": "1",
+  "image": "parlel/sanity:1",
+  "size_kb": 48,
+  "port": 4842,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "SANITY_TOKEN": "parlel",
+    "SANITY_PROJECT_ID": "parlel",
+    "SANITY_DATASET": "production",
+    "SANITY_BASE_URL": "http://127.0.0.1:4842"
+  }
+}

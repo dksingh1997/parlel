@@ -1,0 +1,14 @@
+{
+  "name": "fireworks-ai",
+  "version": "1",
+  "image": "parlel/fireworks-ai:1.0",
+  "size_kb": 52,
+  "port": 4864,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "FIREWORKS_API_KEY": "parlel-fireworks",
+    "FIREWORKS_BASE_URL": "http://127.0.0.1:4864/inference/v1"
+  }
+}

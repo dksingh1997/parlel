@@ -1,0 +1,15 @@
+{
+  "name": "segment",
+  "version": "1.0",
+  "image": "parlel/segment:1.0",
+  "size_kb": 64,
+  "port": 4815,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "SEGMENT_WRITE_KEY": "parlel",
+    "SEGMENT_HOST": "http://127.0.0.1:4815",
+    "SEGMENT_BASE_URL": "http://127.0.0.1:4815"
+  }
+}

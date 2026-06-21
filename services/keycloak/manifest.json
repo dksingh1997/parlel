@@ -1,0 +1,16 @@
+{
+  "name": "keycloak",
+  "version": "1",
+  "image": "parlel/keycloak:1",
+  "size_kb": 48,
+  "port": 4822,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "KEYCLOAK_URL": "http://127.0.0.1:4822",
+    "KEYCLOAK_REALM": "parlel",
+    "KEYCLOAK_CLIENT_ID": "admin-cli",
+    "KEYCLOAK_CLIENT_SECRET": "parlel"
+  }
+}

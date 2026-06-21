@@ -1,0 +1,14 @@
+{
+  "name": "sparkpost",
+  "version": "1.0",
+  "image": "parlel/sparkpost:1.0",
+  "size_kb": 64,
+  "port": 4830,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "SPARKPOST_API_KEY": "parlel-sparkpost-key",
+    "SPARKPOST_BASE_URL": "http://127.0.0.1:4830"
+  }
+}

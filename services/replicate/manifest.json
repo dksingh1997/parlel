@@ -1,0 +1,14 @@
+{
+  "name": "replicate",
+  "version": "1",
+  "image": "parlel/replicate:1.0",
+  "size_kb": 48,
+  "port": 4856,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "REPLICATE_API_TOKEN": "r8_parlel",
+    "REPLICATE_BASE_URL": "http://127.0.0.1:4856"
+  }
+}

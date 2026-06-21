@@ -1,0 +1,59 @@
+{
+  "name": "parlel",
+  "version": "1.0.0",
+  "description": "250+ service emulators on local Docker — Stripe, Postgres, Slack, S3, OpenAI and more, speaking real wire protocols. A verification layer for AI coding agents.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "parlel": "src/launch.mjs"
+  },
+  "scripts": {
+    "start": "node src/launch.mjs",
+    "probe": "node scripts/probe.mjs",
+    "test": "vitest run"
+  },
+  "keywords": [
+    "testing",
+    "mocking",
+    "api-mock",
+    "emulator",
+    "ai-agents",
+    "docker",
+    "localstack-alternative",
+    "stripe",
+    "postgres",
+    "integration-testing"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-cloudwatch": "^3.700.0",
+    "@aws-sdk/client-dynamodb": "^3.700.0",
+    "@aws-sdk/client-eventbridge": "^3.700.0",
+    "@aws-sdk/client-iam": "^3.700.0",
+    "@aws-sdk/client-kinesis": "^3.700.0",
+    "@aws-sdk/client-lambda": "^3.700.0",
+    "@aws-sdk/client-s3": "^3.700.0",
+    "@aws-sdk/client-secrets-manager": "^3.700.0",
+    "@aws-sdk/client-ses": "^3.700.0",
+    "@aws-sdk/client-sfn": "^3.700.0",
+    "@aws-sdk/client-sns": "^3.700.0",
+    "@aws-sdk/client-sqs": "^3.700.0",
+    "@aws-sdk/client-ssm": "^3.700.0",
+    "@azure/core-auth": "^1.9.0",
+    "@azure/keyvault-secrets": "^4.9.0",
+    "@azure/storage-blob": "^12.26.0",
+    "@azure/storage-queue": "^12.25.0",
+    "@google-cloud/storage": "^7.14.0",
+    "amqplib": "^0.10.5",
+    "cassandra-driver": "^4.7.2",
+    "ioredis": "^5.4.1",
+    "kafkajs": "^2.2.4",
+    "mongodb": "^6.11.0",
+    "mysql2": "^3.11.5",
+    "pg": "^8.13.1",
+    "redis": "^4.7.0",
+    "vitest": "^2.1.8"
+  }
+}

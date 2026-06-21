@@ -1,0 +1,14 @@
+{
+  "name": "intercom",
+  "version": "1",
+  "image": "parlel/intercom:1",
+  "size_kb": 64,
+  "port": 4780,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "INTERCOM_ACCESS_TOKEN": "pat-parlel",
+    "INTERCOM_BASE_URL": "http://127.0.0.1:4780"
+  }
+}

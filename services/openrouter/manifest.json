@@ -1,0 +1,14 @@
+{
+  "name": "openrouter",
+  "version": "1",
+  "image": "parlel/openrouter:1.0",
+  "size_kb": 52,
+  "port": 4861,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "OPENROUTER_API_KEY": "sk-or-parlel",
+    "OPENROUTER_BASE_URL": "http://127.0.0.1:4861/api/v1"
+  }
+}

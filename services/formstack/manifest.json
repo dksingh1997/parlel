@@ -1,0 +1,15 @@
+{
+  "name": "formstack",
+  "version": "1",
+  "image": "parlel/formstack:1",
+  "size_kb": 64,
+  "port": 4853,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "FORMSTACK_API_KEY": "parlel",
+    "FORMSTACK_ACCESS_TOKEN": "parlel",
+    "FORMSTACK_BASE_URL": "http://127.0.0.1:4853"
+  }
+}

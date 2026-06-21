@@ -1,0 +1,16 @@
+{
+  "name": "cloudtasks",
+  "version": "0.1",
+  "image": "parlel/cloudtasks:0.1",
+  "size_kb": 60,
+  "port": 4584,
+  "protocol": "http",
+  "healthcheck": "/_parlel/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "CLOUD_TASKS_EMULATOR_HOST": "127.0.0.1:4584",
+    "CLOUDTASKS_EMULATOR_HOST": "127.0.0.1:4584",
+    "GOOGLE_CLOUD_PROJECT": "parlel",
+    "GCLOUD_PROJECT": "parlel"
+  }
+}

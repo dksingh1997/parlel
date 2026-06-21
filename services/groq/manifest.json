@@ -1,0 +1,14 @@
+{
+  "name": "groq",
+  "version": "1",
+  "image": "parlel/groq:1",
+  "size_kb": 64,
+  "port": 4750,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "GROQ_API_KEY": "gsk_parlel",
+    "GROQ_BASE_URL": "http://127.0.0.1:4750/openai/v1"
+  }
+}

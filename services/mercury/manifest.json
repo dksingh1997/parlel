@@ -1,0 +1,14 @@
+{
+  "name": "mercury",
+  "version": "1",
+  "image": "parlel/mercury:1",
+  "size_kb": 48,
+  "port": 4875,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "MERCURY_API_TOKEN": "parlel",
+    "MERCURY_BASE_URL": "http://127.0.0.1:4875"
+  }
+}

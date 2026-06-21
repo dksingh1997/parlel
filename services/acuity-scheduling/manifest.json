@@ -1,0 +1,15 @@
+{
+  "name": "acuity-scheduling",
+  "version": "1",
+  "image": "parlel/acuity-scheduling:1",
+  "size_kb": 64,
+  "port": 4850,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "ACUITY_SCHEDULING_USER_ID": "parlel",
+    "ACUITY_SCHEDULING_API_KEY": "parlel",
+    "ACUITY_SCHEDULING_BASE_URL": "http://127.0.0.1:4850"
+  }
+}

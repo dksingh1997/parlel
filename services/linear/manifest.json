@@ -1,0 +1,14 @@
+{
+  "name": "linear",
+  "version": "1",
+  "image": "parlel/linear:1",
+  "size_kb": 64,
+  "port": 4788,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "LINEAR_API_KEY": "lin_api_parlel",
+    "LINEAR_BASE_URL": "http://127.0.0.1:4788"
+  }
+}

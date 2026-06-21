@@ -1,0 +1,15 @@
+{
+  "name": "pinecone",
+  "version": "2025-01",
+  "image": "parlel/pinecone:2025-01",
+  "size_kb": 128,
+  "port": 5081,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "PINECONE_API_KEY": "parlel",
+    "PINECONE_ENVIRONMENT": "local",
+    "PINECONE_CONTROLLER_HOST": "http://127.0.0.1:5081"
+  }
+}

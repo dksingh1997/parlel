@@ -1,0 +1,14 @@
+{
+  "name": "firecrawl",
+  "version": "1",
+  "image": "parlel/firecrawl:1",
+  "size_kb": 48,
+  "port": 4885,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "FIRECRAWL_API_KEY": "fc-parlel",
+    "FIRECRAWL_BASE_URL": "http://127.0.0.1:4885"
+  }
+}

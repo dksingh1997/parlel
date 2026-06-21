@@ -1,0 +1,16 @@
+{
+  "name": "qdrant",
+  "version": "1.18.0",
+  "image": "parlel/qdrant:1.18.0",
+  "size_kb": 128,
+  "port": 6333,
+  "protocol": "http",
+  "healthcheck": "/healthz",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "QDRANT_URL": "http://127.0.0.1:6333",
+    "QDRANT_HOST": "127.0.0.1",
+    "QDRANT_PORT": "6333",
+    "QDRANT_API_KEY": "parlel"
+  }
+}

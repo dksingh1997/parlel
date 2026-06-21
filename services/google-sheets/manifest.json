@@ -1,0 +1,15 @@
+{
+  "name": "google-sheets",
+  "version": "0.1",
+  "image": "parlel/google-sheets:0.1",
+  "size_kb": 120,
+  "port": 4613,
+  "protocol": "http",
+  "healthcheck": "/_parlel/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "GOOGLE_SHEETS_EMULATOR_HOST": "http://127.0.0.1:4613",
+    "GOOGLE_CLOUD_PROJECT": "parlel",
+    "GCLOUD_PROJECT": "parlel"
+  }
+}

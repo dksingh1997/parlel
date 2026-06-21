@@ -1,0 +1,16 @@
+{
+  "name": "amplitude",
+  "version": "1.0",
+  "image": "parlel/amplitude:1.0",
+  "size_kb": 64,
+  "port": 4809,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "AMPLITUDE_API_KEY": "parlel",
+    "AMPLITUDE_SECRET_KEY": "parlel-secret",
+    "AMPLITUDE_HOST": "http://127.0.0.1:4809",
+    "AMPLITUDE_BASE_URL": "http://127.0.0.1:4809"
+  }
+}

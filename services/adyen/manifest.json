@@ -1,0 +1,15 @@
+{
+  "name": "adyen",
+  "version": "1",
+  "image": "parlel/adyen:1",
+  "size_kb": 48,
+  "port": 4869,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "ADYEN_API_KEY": "parlel",
+    "ADYEN_MERCHANT_ACCOUNT": "ParlelECOM",
+    "ADYEN_BASE_URL": "http://127.0.0.1:4869"
+  }
+}

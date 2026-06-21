@@ -1,0 +1,16 @@
+{
+  "name": "posthog",
+  "version": "1.0",
+  "image": "parlel/posthog:1.0",
+  "size_kb": 64,
+  "port": 4807,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "POSTHOG_API_KEY": "phc_parlel",
+    "POSTHOG_PERSONAL_API_KEY": "phx_parlel",
+    "POSTHOG_HOST": "http://127.0.0.1:4807",
+    "POSTHOG_BASE_URL": "http://127.0.0.1:4807"
+  }
+}

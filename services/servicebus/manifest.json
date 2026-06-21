@@ -1,0 +1,15 @@
+{
+  "name": "servicebus",
+  "version": "0.1",
+  "image": "parlel/servicebus:0.1",
+  "size_kb": 64,
+  "port": 4592,
+  "protocol": "http",
+  "healthcheck": "/_parlel/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "SERVICEBUS_NAMESPACE": "parlel",
+    "SERVICEBUS_ENDPOINT": "http://127.0.0.1:4592",
+    "SERVICEBUS_CONNECTION_STRING": "Endpoint=sb://127.0.0.1:4592/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=parlellocaldevkey;UseDevelopmentEmulator=true"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "klaviyo",
+  "version": "1.0",
+  "image": "parlel/klaviyo:1.0",
+  "size_kb": 64,
+  "port": 4658,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "KLAVIYO_API_KEY": "pk_parlel_test_private_key",
+    "KLAVIYO_PUBLIC_API_KEY": "PARLEL",
+    "KLAVIYO_BASE_URL": "http://127.0.0.1:4658",
+    "KLAVIYO_API_BASE_URL": "http://127.0.0.1:4658/api",
+    "KLAVIYO_API_REVISION": "2024-10-15"
+  }
+}

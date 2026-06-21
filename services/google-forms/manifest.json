@@ -1,0 +1,15 @@
+{
+  "name": "google-forms",
+  "version": "0.1",
+  "image": "parlel/google-forms:0.1",
+  "size_kb": 120,
+  "port": 4625,
+  "protocol": "http",
+  "healthcheck": "/_parlel/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "GOOGLE_FORMS_EMULATOR_HOST": "http://127.0.0.1:4625",
+    "GOOGLE_CLOUD_PROJECT": "parlel",
+    "GCLOUD_PROJECT": "parlel"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "new-relic",
+  "version": "1",
+  "image": "parlel/new-relic:1",
+  "size_kb": 48,
+  "port": 4878,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "NEW_RELIC_API_KEY": "parlel",
+    "NEW_RELIC_LICENSE_KEY": "parlel",
+    "NEW_RELIC_ACCOUNT_ID": "1",
+    "NEW_RELIC_BASE_URL": "http://127.0.0.1:4878"
+  }
+}

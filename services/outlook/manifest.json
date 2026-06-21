@@ -1,0 +1,17 @@
+{
+  "name": "outlook",
+  "version": "0.1",
+  "image": "parlel/outlook:0.1",
+  "size_kb": 100,
+  "port": 4620,
+  "protocol": "http",
+  "healthcheck": "/_parlel/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "OUTLOOK_EMULATOR_HOST": "http://127.0.0.1:4620",
+    "MICROSOFT_GRAPH_BASE_URL": "http://127.0.0.1:4620/v1.0",
+    "AZURE_TENANT_ID": "parlel",
+    "AZURE_CLIENT_ID": "parlel",
+    "AZURE_CLIENT_SECRET": "parlel"
+  }
+}

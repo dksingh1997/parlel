@@ -1,0 +1,16 @@
+{
+  "name": "slack",
+  "version": "1.0",
+  "image": "parlel/slack:1.0",
+  "size_kb": 64,
+  "port": 4654,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "SLACK_BOT_TOKEN": "xoxb-parlel-test-token",
+    "SLACK_APP_TOKEN": "xapp-parlel-test-token",
+    "SLACK_SIGNING_SECRET": "parlel_test_signing_secret",
+    "SLACK_BASE_URL": "http://127.0.0.1:4654/api/"
+  }
+}

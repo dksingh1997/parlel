@@ -1,0 +1,15 @@
+{
+  "name": "firebase-auth",
+  "version": "1",
+  "image": "parlel/firebase-auth:1",
+  "size_kb": 48,
+  "port": 4820,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "FIREBASE_AUTH_EMULATOR_HOST": "127.0.0.1:4820",
+    "FIREBASE_API_KEY": "parlel",
+    "FIREBASE_BASE_URL": "http://127.0.0.1:4820"
+  }
+}

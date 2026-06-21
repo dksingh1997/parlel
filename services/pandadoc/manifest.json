@@ -1,0 +1,14 @@
+{
+  "name": "pandadoc",
+  "version": "1",
+  "image": "parlel/pandadoc:1",
+  "size_kb": 64,
+  "port": 4851,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "PANDADOC_API_KEY": "parlel",
+    "PANDADOC_BASE_URL": "http://127.0.0.1:4851"
+  }
+}

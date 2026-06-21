@@ -1,0 +1,14 @@
+{
+  "name": "propelauth",
+  "version": "1",
+  "image": "parlel/propelauth:1",
+  "size_kb": 48,
+  "port": 4825,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "PROPELAUTH_AUTH_URL": "http://127.0.0.1:4825",
+    "PROPELAUTH_API_KEY": "parlel"
+  }
+}

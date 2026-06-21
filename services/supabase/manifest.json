@@ -1,0 +1,15 @@
+{
+  "name": "supabase",
+  "version": "v1",
+  "image": "parlel/supabase:1",
+  "size_kb": 70,
+  "port": 54321,
+  "protocol": "http",
+  "healthcheck": "/rest/v1/",
+  "startup_time_ms": 200,
+  "env_vars": {
+    "SUPABASE_URL": "http://localhost:54321",
+    "SUPABASE_ANON_KEY": "parlel-anon-key",
+    "SUPABASE_SERVICE_ROLE_KEY": "parlel-service-role-key"
+  }
+}

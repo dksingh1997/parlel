@@ -1,0 +1,16 @@
+{
+  "name": "jenkins",
+  "version": "1",
+  "image": "parlel/jenkins:1",
+  "size_kb": 48,
+  "port": 4877,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "JENKINS_URL": "http://127.0.0.1:4877",
+    "JENKINS_USER": "parlel",
+    "JENKINS_API_TOKEN": "parlel",
+    "JENKINS_BASE_URL": "http://127.0.0.1:4877"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "eventhubs",
+  "version": "0.1",
+  "image": "parlel/eventhubs:0.1",
+  "size_kb": 64,
+  "port": 4595,
+  "protocol": "http",
+  "healthcheck": "/_parlel/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "EVENTHUBS_NAMESPACE": "parlel",
+    "EVENTHUBS_ENDPOINT": "http://127.0.0.1:4595",
+    "EVENTHUBS_CONNECTION_STRING": "Endpoint=sb://127.0.0.1:4595/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=parlellocaldevkey;UseDevelopmentEmulator=true",
+    "EVENTHUB_NAME": "parlelhub"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "uploadcare",
+  "version": "1",
+  "image": "parlel/uploadcare:1",
+  "size_kb": 48,
+  "port": 4840,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "UPLOADCARE_PUBLIC_KEY": "parlel",
+    "UPLOADCARE_SECRET_KEY": "parlel",
+    "UPLOADCARE_BASE_URL": "http://127.0.0.1:4840",
+    "UPLOADCARE_UPLOAD_URL": "http://127.0.0.1:4840"
+  }
+}

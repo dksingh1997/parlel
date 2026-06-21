@@ -1,0 +1,15 @@
+{
+  "name": "google-tasks",
+  "version": "0.1",
+  "image": "parlel/google-tasks:0.1",
+  "size_kb": 90,
+  "port": 4626,
+  "protocol": "http",
+  "healthcheck": "/_parlel/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "GOOGLE_TASKS_EMULATOR_HOST": "http://127.0.0.1:4626",
+    "GOOGLE_CLOUD_PROJECT": "parlel",
+    "GCLOUD_PROJECT": "parlel"
+  }
+}

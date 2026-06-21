@@ -1,0 +1,15 @@
+{
+  "name": "pagerduty",
+  "version": "1",
+  "image": "parlel/pagerduty:1",
+  "size_kb": 64,
+  "port": 4774,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "PAGERDUTY_TOKEN": "pd_parlel",
+    "PAGERDUTY_API_URL": "http://127.0.0.1:4774",
+    "PAGERDUTY_ROUTING_KEY": "parlelroutingkey0000000000000000"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "algolia",
+  "version": "1",
+  "image": "parlel/algolia:1",
+  "size_kb": 48,
+  "port": 4884,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "ALGOLIA_APP_ID": "parlel",
+    "ALGOLIA_API_KEY": "parlel",
+    "ALGOLIA_BASE_URL": "http://127.0.0.1:4884"
+  }
+}

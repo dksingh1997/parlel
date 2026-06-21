@@ -1,0 +1,16 @@
+{
+  "name": "discord",
+  "version": "1.0",
+  "image": "parlel/discord:1.0",
+  "size_kb": 80,
+  "port": 4655,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "DISCORD_TOKEN": "parlel.test.discordbottoken",
+    "DISCORD_BOT_TOKEN": "parlel.test.discordbottoken",
+    "DISCORD_APPLICATION_ID": "1000000000000000001",
+    "DISCORD_API_BASE_URL": "http://127.0.0.1:4655/api/v10"
+  }
+}

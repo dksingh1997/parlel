@@ -1,0 +1,18 @@
+{
+  "name": "datadog",
+  "version": "1.0",
+  "image": "parlel/datadog:1.0",
+  "size_kb": 64,
+  "port": 4810,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "DATADOG_API_KEY": "parlel",
+    "DD_API_KEY": "parlel",
+    "DD_APP_KEY": "parlel-app",
+    "DATADOG_APP_KEY": "parlel-app",
+    "DD_SITE": "http://127.0.0.1:4810",
+    "DATADOG_HOST": "http://127.0.0.1:4810"
+  }
+}

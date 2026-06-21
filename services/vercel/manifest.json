@@ -1,0 +1,14 @@
+{
+  "name": "vercel",
+  "version": "1",
+  "image": "parlel/vercel:1",
+  "size_kb": 64,
+  "port": 4770,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "VERCEL_TOKEN": "vercel_parlel",
+    "VERCEL_API_URL": "http://127.0.0.1:4770"
+  }
+}

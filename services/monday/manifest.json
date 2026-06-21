@@ -1,0 +1,14 @@
+{
+  "name": "monday",
+  "version": "1",
+  "image": "parlel/monday:1",
+  "size_kb": 64,
+  "port": 4791,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "MONDAY_API_TOKEN": "monday_parlel",
+    "MONDAY_BASE_URL": "http://127.0.0.1:4791"
+  }
+}

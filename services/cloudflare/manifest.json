@@ -1,0 +1,14 @@
+{
+  "name": "cloudflare",
+  "version": "1",
+  "image": "parlel/cloudflare:1",
+  "size_kb": 64,
+  "port": 4772,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "CLOUDFLARE_API_TOKEN": "cf_parlel",
+    "CLOUDFLARE_API_URL": "http://127.0.0.1:4772/client/v4"
+  }
+}

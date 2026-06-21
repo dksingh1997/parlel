@@ -1,0 +1,15 @@
+{
+  "name": "azurequeue",
+  "version": "0.1",
+  "image": "parlel/azurequeue:0.1",
+  "size_kb": 64,
+  "port": 4593,
+  "protocol": "http",
+  "healthcheck": "/_parlel/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "AZURE_STORAGE_ACCOUNT": "devstoreaccount1",
+    "AZURE_STORAGE_KEY": "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==",
+    "AZURE_STORAGE_CONNECTION_STRING": "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;QueueEndpoint=http://127.0.0.1:4593/devstoreaccount1;"
+  }
+}

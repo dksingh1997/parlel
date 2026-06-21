@@ -1,0 +1,15 @@
+{
+  "name": "webflow",
+  "version": "1",
+  "image": "parlel/webflow:1",
+  "size_kb": 48,
+  "port": 4843,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "WEBFLOW_API_TOKEN": "parlel",
+    "WEBFLOW_SITE_ID": "parlel-site",
+    "WEBFLOW_BASE_URL": "http://127.0.0.1:4843"
+  }
+}

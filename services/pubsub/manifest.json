@@ -1,0 +1,16 @@
+{
+  "name": "pubsub",
+  "version": "0.1",
+  "image": "parlel/pubsub:0.1",
+  "size_kb": 70,
+  "port": 4582,
+  "protocol": "http",
+  "healthcheck": "/_parlel/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "PUBSUB_EMULATOR_HOST": "127.0.0.1:4582",
+    "PUBSUB_PROJECT_ID": "parlel",
+    "GOOGLE_CLOUD_PROJECT": "parlel",
+    "GCLOUD_PROJECT": "parlel"
+  }
+}

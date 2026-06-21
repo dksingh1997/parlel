@@ -1,0 +1,15 @@
+{
+  "name": "reddit",
+  "version": "1",
+  "image": "parlel/reddit:1",
+  "size_kb": 48,
+  "port": 4804,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "REDDIT_ACCESS_TOKEN": "parlel",
+    "REDDIT_USER_AGENT": "parlel/1.0 (by /u/parlel)",
+    "REDDIT_BASE_URL": "http://127.0.0.1:4804"
+  }
+}

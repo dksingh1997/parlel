@@ -1,0 +1,15 @@
+{
+  "name": "chargebee",
+  "version": "1.0",
+  "image": "parlel/chargebee:1.0",
+  "size_kb": 64,
+  "port": 4764,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "CHARGEBEE_API_KEY": "test_parlel",
+    "CHARGEBEE_SITE": "parlel-test",
+    "CHARGEBEE_BASE_URL": "http://127.0.0.1:4764"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "notion",
+  "version": "1",
+  "image": "parlel/notion:1",
+  "size_kb": 64,
+  "port": 4794,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "NOTION_API_KEY": "secret_parlel",
+    "NOTION_BASE_URL": "http://127.0.0.1:4794"
+  }
+}

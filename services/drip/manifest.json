@@ -1,0 +1,15 @@
+{
+  "name": "drip",
+  "version": "1.0",
+  "image": "parlel/drip:1.0",
+  "size_kb": 64,
+  "port": 4833,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "DRIP_API_TOKEN": "parlel-drip-token",
+    "DRIP_ACCOUNT_ID": "9999999",
+    "DRIP_BASE_URL": "http://127.0.0.1:4833"
+  }
+}

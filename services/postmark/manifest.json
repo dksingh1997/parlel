@@ -1,0 +1,14 @@
+{
+  "name": "postmark",
+  "version": "1.0",
+  "image": "parlel/postmark:1.0",
+  "size_kb": 64,
+  "port": 4827,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "POSTMARK_SERVER_TOKEN": "parlel-server-token",
+    "POSTMARK_BASE_URL": "http://127.0.0.1:4827"
+  }
+}

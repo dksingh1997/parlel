@@ -1,0 +1,15 @@
+{
+  "name": "helpscout",
+  "version": "1",
+  "image": "parlel/helpscout:1",
+  "size_kb": 64,
+  "port": 4786,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "HELPSCOUT_APP_ID": "parlel",
+    "HELPSCOUT_APP_SECRET": "pat-parlel",
+    "HELPSCOUT_BASE_URL": "http://127.0.0.1:4786"
+  }
+}

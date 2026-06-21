@@ -1,0 +1,15 @@
+{
+  "name": "wordpress",
+  "version": "1",
+  "image": "parlel/wordpress:1",
+  "size_kb": 48,
+  "port": 4844,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "WORDPRESS_USERNAME": "parlel",
+    "WORDPRESS_APP_PASSWORD": "parlel",
+    "WORDPRESS_BASE_URL": "http://127.0.0.1:4844"
+  }
+}

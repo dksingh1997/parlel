@@ -1,0 +1,14 @@
+{
+  "name": "brevo",
+  "version": "1.0",
+  "image": "parlel/brevo:1.0",
+  "size_kb": 64,
+  "port": 4828,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "BREVO_API_KEY": "xkeysib-parlel",
+    "BREVO_BASE_URL": "http://127.0.0.1:4828"
+  }
+}

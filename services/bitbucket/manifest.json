@@ -1,0 +1,14 @@
+{
+  "name": "bitbucket",
+  "version": "1",
+  "image": "parlel/bitbucket:1",
+  "size_kb": 64,
+  "port": 4769,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "BITBUCKET_TOKEN": "bbp_parlel",
+    "BITBUCKET_API_URL": "http://127.0.0.1:4769"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "stytch",
+  "version": "1",
+  "image": "parlel/stytch:1",
+  "size_kb": 48,
+  "port": 4823,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "STYTCH_PROJECT_ID": "project-test-parlel",
+    "STYTCH_SECRET": "secret-test-parlel",
+    "STYTCH_BASE_URL": "http://127.0.0.1:4823"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "voyage-ai",
+  "version": "1",
+  "image": "parlel/voyage-ai:1.0",
+  "size_kb": 48,
+  "port": 4865,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "VOYAGE_API_KEY": "pa-parlel-voyage",
+    "VOYAGE_BASE_URL": "http://127.0.0.1:4865/v1"
+  }
+}

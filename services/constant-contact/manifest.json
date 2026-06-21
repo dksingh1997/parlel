@@ -1,0 +1,14 @@
+{
+  "name": "constant-contact",
+  "version": "1.0",
+  "image": "parlel/constant-contact:1.0",
+  "size_kb": 64,
+  "port": 4832,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "CONSTANT_CONTACT_ACCESS_TOKEN": "parlel-cc-token",
+    "CONSTANT_CONTACT_BASE_URL": "http://127.0.0.1:4832"
+  }
+}

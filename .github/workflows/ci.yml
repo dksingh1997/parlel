@@ -1,0 +1,35 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      # Real drivers used by the probe (TCP services) + the test suite.
+      - name: Install dev deps
+        run: npm install
+
+      # Unit tests: per-service fidelity (real drivers where applicable).
+      - name: Test
+        run: npm test
+
+      # Boot every service and probe each one (HTTP health / TCP round-trip).
+      - name: Boot-all probe
+        run: |
+          SERVICES=all node src/launch.mjs &
+          LAUNCH_PID=$!
+          sleep 8
+          node scripts/probe.mjs
+          kill $LAUNCH_PID || true

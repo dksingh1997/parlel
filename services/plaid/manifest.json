@@ -1,0 +1,15 @@
+{
+  "name": "plaid",
+  "version": "1",
+  "image": "parlel/plaid:1",
+  "size_kb": 48,
+  "port": 4866,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "PLAID_CLIENT_ID": "parlel",
+    "PLAID_SECRET": "parlel",
+    "PLAID_BASE_URL": "http://127.0.0.1:4866"
+  }
+}

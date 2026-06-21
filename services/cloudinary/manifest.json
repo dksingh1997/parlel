@@ -1,0 +1,17 @@
+{
+  "name": "cloudinary",
+  "version": "1",
+  "image": "parlel/cloudinary:1",
+  "size_kb": 48,
+  "port": 4838,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "CLOUDINARY_URL": "cloudinary://parlel:parlel@parlel",
+    "CLOUDINARY_CLOUD_NAME": "parlel",
+    "CLOUDINARY_API_KEY": "parlel",
+    "CLOUDINARY_API_SECRET": "parlel",
+    "CLOUDINARY_BASE_URL": "http://127.0.0.1:4838"
+  }
+}

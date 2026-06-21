@@ -1,0 +1,15 @@
+{
+  "name": "surveymonkey",
+  "version": "1",
+  "image": "parlel/surveymonkey:1",
+  "size_kb": 64,
+  "port": 4847,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "SURVEYMONKEY_API_KEY": "parlel",
+    "SURVEYMONKEY_ACCESS_TOKEN": "parlel",
+    "SURVEYMONKEY_BASE_URL": "http://127.0.0.1:4847"
+  }
+}

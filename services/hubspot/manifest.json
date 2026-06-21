@@ -1,0 +1,14 @@
+{
+  "name": "hubspot",
+  "version": "1",
+  "image": "parlel/hubspot:1",
+  "size_kb": 64,
+  "port": 4777,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "HUBSPOT_ACCESS_TOKEN": "pat-parlel",
+    "HUBSPOT_BASE_URL": "http://127.0.0.1:4777"
+  }
+}

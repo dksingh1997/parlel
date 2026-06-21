@@ -1,0 +1,17 @@
+{
+  "name": "twilio",
+  "version": "1.0",
+  "image": "parlel/twilio:1.0",
+  "size_kb": 64,
+  "port": 4652,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "TWILIO_ACCOUNT_SID": "ACparlel00000000000000000000000000",
+    "TWILIO_AUTH_TOKEN": "parlel_test_auth_token",
+    "TWILIO_BASE_URL": "http://127.0.0.1:4652",
+    "TWILIO_API_BASE_URL": "http://127.0.0.1:4652",
+    "TWILIO_VERIFY_BASE_URL": "http://127.0.0.1:4652"
+  }
+}

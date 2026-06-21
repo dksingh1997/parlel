@@ -1,0 +1,15 @@
+{
+  "name": "frontegg",
+  "version": "1",
+  "image": "parlel/frontegg:1",
+  "size_kb": 48,
+  "port": 4824,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "FRONTEGG_BASE_URL": "http://127.0.0.1:4824",
+    "FRONTEGG_CLIENT_ID": "parlel",
+    "FRONTEGG_API_KEY": "parlel"
+  }
+}

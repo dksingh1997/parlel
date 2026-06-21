@@ -1,0 +1,15 @@
+{
+  "name": "shopify",
+  "version": "1.0",
+  "image": "parlel/shopify:1.0",
+  "size_kb": 64,
+  "port": 4758,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "SHOPIFY_ACCESS_TOKEN": "shpat_parlel",
+    "SHOPIFY_SHOP": "parlel-test.myshopify.com",
+    "SHOPIFY_BASE_URL": "http://127.0.0.1:4758"
+  }
+}

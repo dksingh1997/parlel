@@ -1,0 +1,14 @@
+{
+  "name": "linkedin",
+  "version": "1",
+  "image": "parlel/linkedin:1",
+  "size_kb": 48,
+  "port": 4799,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "LINKEDIN_ACCESS_TOKEN": "parlel",
+    "LINKEDIN_BASE_URL": "http://127.0.0.1:4799"
+  }
+}

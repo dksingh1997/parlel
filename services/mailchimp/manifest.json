@@ -1,0 +1,16 @@
+{
+  "name": "mailchimp",
+  "version": "1.0",
+  "image": "parlel/mailchimp:1.0",
+  "size_kb": 64,
+  "port": 4653,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "MAILCHIMP_API_KEY": "parlel-us1",
+    "MAILCHIMP_SERVER_PREFIX": "us1",
+    "MAILCHIMP_BASE_URL": "http://127.0.0.1:4653",
+    "MAILCHIMP_API_BASE_URL": "http://127.0.0.1:4653/3.0"
+  }
+}

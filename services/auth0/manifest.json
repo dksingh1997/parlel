@@ -1,0 +1,16 @@
+{
+  "name": "auth0",
+  "version": "1",
+  "image": "parlel/auth0:1",
+  "size_kb": 48,
+  "port": 4817,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "AUTH0_DOMAIN": "127.0.0.1:4817",
+    "AUTH0_CLIENT_ID": "parlel",
+    "AUTH0_CLIENT_SECRET": "parlel",
+    "AUTH0_BASE_URL": "http://127.0.0.1:4817"
+  }
+}

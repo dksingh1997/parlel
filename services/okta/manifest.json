@@ -1,0 +1,15 @@
+{
+  "name": "okta",
+  "version": "1",
+  "image": "parlel/okta:1",
+  "size_kb": 48,
+  "port": 4819,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "OKTA_ORG_URL": "http://127.0.0.1:4819",
+    "OKTA_API_TOKEN": "parlel",
+    "OKTA_DOMAIN": "127.0.0.1:4819"
+  }
+}

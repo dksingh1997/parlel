@@ -1,0 +1,16 @@
+{
+  "name": "keyvault",
+  "version": "0.1",
+  "image": "parlel/keyvault:0.1",
+  "size_kb": 40,
+  "port": 4594,
+  "protocol": "http",
+  "healthcheck": "/_parlel/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "AZURE_KEYVAULT_URL": "http://127.0.0.1:4594",
+    "AZURE_TENANT_ID": "parlel-tenant",
+    "AZURE_CLIENT_ID": "parlel-client",
+    "AZURE_CLIENT_SECRET": "parlel-secret"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "postgres",
+  "version": "16",
+  "image": "parlel/postgres:16",
+  "size_kb": 80,
+  "port": 5432,
+  "protocol": "tcp",
+  "healthcheck": "SELECT 1",
+  "startup_time_ms": 200,
+  "env_vars": {
+    "POSTGRES_USER": "parlel",
+    "POSTGRES_PASSWORD": "parlel",
+    "POSTGRES_DB": "parlel"
+  }
+}

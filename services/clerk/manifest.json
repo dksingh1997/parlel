@@ -1,0 +1,15 @@
+{
+  "name": "clerk",
+  "version": "1",
+  "image": "parlel/clerk:1",
+  "size_kb": 48,
+  "port": 4818,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "CLERK_SECRET_KEY": "sk_test_parlel",
+    "CLERK_API_URL": "http://127.0.0.1:4818",
+    "CLERK_PUBLISHABLE_KEY": "pk_test_parlel"
+  }
+}

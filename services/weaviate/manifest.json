@@ -1,0 +1,14 @@
+{
+  "name": "weaviate",
+  "version": "1",
+  "image": "parlel/weaviate:1.0",
+  "size_kb": 56,
+  "port": 4859,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "WEAVIATE_API_KEY": "parlel_weaviate",
+    "WEAVIATE_BASE_URL": "http://127.0.0.1:4859"
+  }
+}

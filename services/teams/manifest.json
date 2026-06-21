@@ -1,0 +1,17 @@
+{
+  "name": "teams",
+  "version": "0.1",
+  "image": "parlel/teams:0.1",
+  "size_kb": 96,
+  "port": 4621,
+  "protocol": "http",
+  "healthcheck": "/_parlel/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "TEAMS_EMULATOR_HOST": "http://127.0.0.1:4621",
+    "MICROSOFT_GRAPH_BASE_URL": "http://127.0.0.1:4621/v1.0",
+    "AZURE_TENANT_ID": "parlel",
+    "AZURE_CLIENT_ID": "parlel",
+    "AZURE_CLIENT_SECRET": "parlel"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "freshsales",
+  "version": "1",
+  "image": "parlel/freshsales:1",
+  "size_kb": 64,
+  "port": 4783,
+  "protocol": "http",
+  "healthcheck": "/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "FRESHSALES_API_KEY": "pat-parlel",
+    "FRESHSALES_BASE_URL": "http://127.0.0.1:4783"
+  }
+}
