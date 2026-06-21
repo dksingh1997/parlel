@@ -44,17 +44,30 @@ free, with zero risk to production.
 
 ## Quick start
 
-**With Docker Compose (pick your services):**
+**With Docker (recommended — collision-safe):**
 
 ```bash
 git clone https://github.com/dksingh1997/parlel && cd parlel
+npm install   # one-time, for the launcher
 
 # start just what you need
-SERVICES="postgres,redis,stripe" docker compose up
+SERVICES="postgres,redis,stripe" npm run up
 
 # or everything
-SERVICES=all docker compose up
+SERVICES=all npm run up
 ```
+
+`npm run up` publishes only the ports for the services you ask for, and if a
+port is already taken on your machine (a local Postgres on 5432, say) it
+remaps that one service to a free port and tells you which one:
+
+```
+parlel: 1 host port(s) were busy — remapped to free ports:
+  • postgres: connect on localhost:15000 (container 5432)
+```
+
+Plain `docker compose up` also works if you'd rather — see
+[`docker-compose.yml`](./docker-compose.yml).
 
 **With plain `docker run`:**
 
@@ -156,6 +169,13 @@ your app / agent  ──▶  localhost:<port>  ──▶  in-memory emulator (re
 
 Each emulator is dependency-free Node holding state in memory. State is
 ephemeral — restart for a clean slate. No data ever leaves your machine.
+
+Everything runs locally, so the **official client libraries connect directly** —
+`psycopg`/`pg` to `localhost:5432`, `kafkajs` to `localhost:9092`, `redis` to
+`localhost:6379`, and so on. There is no proxy, no bridge, and no shim: the
+TCP services (Postgres, MySQL, MongoDB, Kafka, RabbitMQ, Cassandra, Redis) speak
+their real wire protocols straight to the port. (Kafka advertises
+`localhost:9092` in its metadata, so `kafkajs` reconnects land on the emulator.)
 
 ## Add a service
 

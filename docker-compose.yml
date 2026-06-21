@@ -1,14 +1,21 @@
 # Parlel — 250+ service emulators on local Docker.
 #
-#   # start just what you need
-#   SERVICES="postgres,redis,stripe,openai,slack" docker compose up
+# RECOMMENDED: use the collision-safe launcher, which publishes only the ports
+# for the services you ask for and automatically remaps any port that's already
+# busy on your machine (e.g. a local Postgres on 5432):
 #
-#   # or everything
-#   SERVICES=all docker compose up
+#   SERVICES="postgres,redis,stripe,openai,slack" npm run up
+#   SERVICES=all npm run up
+#
+# This raw compose file publishes ALL service ports unconditionally — handy if
+# you want plain `docker compose up`, but it fails if any one of these host
+# ports is already in use. Prefer `npm run up` unless you've trimmed this list.
+#
+#   SERVICES="postgres,redis" docker compose up
 #
 # Each service listens on its canonical port (below). Point your app at
 # localhost:<port> with unmodified real drivers — see .env.example for ports +
-# seeded credentials. Trim the `ports:` list if you only ever use a few.
+# seeded credentials.
 services:
   parlel:
     build: .

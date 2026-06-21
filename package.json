@@ -8,6 +8,7 @@
     "parlel": "src/launch.mjs"
   },
   "scripts": {
+    "up": "node scripts/up.mjs",
     "start": "node src/launch.mjs",
     "probe": "node scripts/probe.mjs",
     "test": "vitest run"
