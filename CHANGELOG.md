@@ -7,6 +7,14 @@ All notable changes to Parlel are documented here. The format is based on
 
 ### Added
 
+- **Control plane** (`src/control-plane.mjs`) — a single additive admin HTTP
+  server (default `localhost:4700`) started alongside the emulators by the
+  launcher. Endpoints: `GET /`, `GET /healthz`, `GET /services`,
+  `GET /services/:slug`, `GET /services/:slug/state` (via `dump()`),
+  `POST /services/:slug/reset`, and `POST /reset` (reset the whole fleet — the
+  per-test isolation primitive). Returns ready-to-use `connection_string`s.
+  Configurable via `PARLEL_CONTROL_PORT`; disable with `PARLEL_CONTROL=0`. Pure
+  Node, zero dependencies. Documented in `docs/control-plane.md`.
 - **Emulator contract conformance test** (`test/conformance.test.ts`). Asserts
   across the whole catalog that every service has a valid manifest, a unique port,
   a `src/server.js` exporting a `*Server` class, and that the class implements

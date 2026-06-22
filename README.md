@@ -160,6 +160,20 @@ npm run probe    # boot a set and health-check every service
 - **Credentials** — seeded test values (e.g. `sk_test_parlel`); any non-empty
   value is accepted, so you rarely need to change them.
 
+## Control plane
+
+Alongside the emulators, Parlel runs an additive admin server on
+`localhost:4700`. List what's running, inspect state, and — most usefully — reset
+every service to a clean slate between tests without restarting anything:
+
+```js
+beforeEach(() => fetch("http://127.0.0.1:4700/reset", { method: "POST" }));
+```
+
+`GET /services` returns each service's port and a ready-to-use connection string.
+See [`docs/control-plane.md`](./docs/control-plane.md). Disable with
+`PARLEL_CONTROL=0`.
+
 ## How it works
 
 ```
