@@ -7,6 +7,15 @@ All notable changes to Parlel are documented here. The format is based on
 
 ### Added
 
+- **Universal request recorder** (`src/request-recorder.mjs`). The launcher
+  installs it on each HTTP emulator's server (zero emulator code changes),
+  capturing every request — method, path, query, headers (secrets redacted),
+  request/response bodies, status, and timing — into a per-service capped ring
+  buffer (default 1,000). Exposed via the control plane at
+  `GET /services/:slug/requests` with `method`/`path`/`since`/`limit` filters, so
+  tests can assert "the service received exactly one POST /v1/charges". Cleared
+  on reset. Disable with `PARLEL_RECORD=0`; tune via `PARLEL_RECORD_CAP` /
+  `PARLEL_RECORD_MAX_BODY`.
 - **Control plane** (`src/control-plane.mjs`) — a single additive admin HTTP
   server (default `localhost:4700`) started alongside the emulators by the
   launcher. Endpoints: `GET /`, `GET /healthz`, `GET /services`,
