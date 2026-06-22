@@ -52,13 +52,35 @@ afterAll(async () => {
 });
 
 describe("control plane — discovery", () => {
-  it("GET / lists the API", async () => {
+  it("GET / returns the JSON API index to programmatic clients (Accept: */*)", async () => {
+    // fetch sends Accept: */* by default — must stay JSON so SDKs/curl are unaffected.
     const res = await fetch(`${base()}/`);
     expect(res.status).toBe(200);
+    expect(res.headers.get("content-type")).toContain("application/json");
     const body = await res.json();
     expect(body.name).toBe("parlel-control-plane");
     expect(body.services).toBe(2);
     expect(Array.isArray(body.endpoints)).toBe(true);
+  });
+
+  it("GET / serves the HTML dashboard to browsers (Accept: text/html)", async () => {
+    const res = await fetch(`${base()}/`, { headers: { Accept: "text/html,*/*" } });
+    expect(res.status).toBe(200);
+    expect(res.headers.get("content-type")).toContain("text/html");
+    const html = await res.text();
+    expect(html).toContain("<!doctype html>");
+    expect(html).toContain("Parlel");
+    // The dashboard must reference the real control-plane endpoints it drives.
+    expect(html).toContain("/services");
+    expect(html).toContain("/reset");
+  });
+
+  it("GET /api always returns JSON regardless of Accept", async () => {
+    const res = await fetch(`${base()}/api`, { headers: { Accept: "text/html" } });
+    expect(res.status).toBe(200);
+    expect(res.headers.get("content-type")).toContain("application/json");
+    const body = await res.json();
+    expect(body.name).toBe("parlel-control-plane");
   });
 
   it("GET /healthz reports the fleet", async () => {

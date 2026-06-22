@@ -7,6 +7,14 @@ All notable changes to Parlel are documented here. The format is based on
 
 ### Added
 
+- **Control-plane dashboard.** Open `http://localhost:4700/` in a browser for a
+  live dashboard: a grid of every running service (port, protocol, uptime,
+  capability badges, connection string), a request-log viewer, a state inspector,
+  and per-service + whole-fleet reset buttons, auto-refreshing every 2s. A single
+  self-contained HTML page (vanilla JS, zero dependencies, no build step) served
+  by the control plane and backed entirely by the existing JSON API. `GET /`
+  content-negotiates (HTML for browsers, JSON for `fetch`/curl/SDKs); `GET /api`
+  always returns JSON.
 - **Seeding & fixtures.** Optional `seed(data)` emulator-contract method (graceful
   degrade when absent), exposed via the control plane at
   `POST /services/:slug/seed`. The launcher loads a declarative

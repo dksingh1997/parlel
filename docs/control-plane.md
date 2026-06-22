@@ -24,10 +24,27 @@ your test harness ──▶ localhost:4700   ──▶ control plane (admin: lis
 If the control port is already in use, the launcher logs it and continues without
 the admin API — the emulators still run.
 
+## Dashboard
+
+Open `http://localhost:4700/` **in a browser** for a live dashboard: a grid of
+every running service (slug, port, protocol, uptime, capability badges, and a
+copy-ready connection string), a request-log viewer, a state inspector, and
+per-service + whole-fleet **Reset** buttons. It auto-refreshes every 2 seconds.
+
+The page is a single self-contained HTML file (vanilla JS, no build step, no CDN,
+no dependencies) served by the control plane. It is a pure client of the JSON API
+below — it adds no new server behavior.
+
+Content negotiation on `GET /`: browsers (`Accept: text/html`) get the dashboard;
+programmatic clients (`fetch`/curl/SDKs, which send `Accept: */*`) get the JSON
+index. Use `GET /api` to force JSON.
+
 ## Endpoints
 
 ### `GET /`
-Index — name, service count, and the endpoint list.
+The HTML dashboard for browsers; the JSON API index for programmatic clients
+(see content negotiation above). `GET /api` always returns JSON — name, service
+count, and the endpoint list.
 
 ### `GET /healthz`
 Aggregate fleet health.
