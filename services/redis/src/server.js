@@ -73,6 +73,20 @@ export class RedisServer {
     this.subscribers.clear();
   }
 
+  // Preload string keys for test fixtures. Accepts either a flat map
+  // `{ key: "value" }` or `{ keys: { key: "value" } }`. Values are coerced to
+  // strings (Redis stores strings). Used by the Parlel control plane / fixtures.
+  seed(data = {}) {
+    const keys = data && typeof data.keys === "object" ? data.keys : data;
+    let count = 0;
+    for (const [key, value] of Object.entries(keys || {})) {
+      this.store.set(String(key), { type: "string", value: String(value) });
+      this.expires.delete(String(key));
+      count++;
+    }
+    return { keys: count };
+  }
+
   handleCommand(cmd, socket) {
     if (cmd.type !== "array" || !cmd.value || cmd.value.length === 0) {
       return encodeError("invalid command");

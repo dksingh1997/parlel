@@ -7,6 +7,13 @@ All notable changes to Parlel are documented here. The format is based on
 
 ### Added
 
+- **Seeding & fixtures.** Optional `seed(data)` emulator-contract method (graceful
+  degrade when absent), exposed via the control plane at
+  `POST /services/:slug/seed`. The launcher loads a declarative
+  `parlel.fixtures.json` (or `PARLEL_FIXTURES` path) on boot and seeds each
+  running service. Implemented `seed()` for `stripe` (customers/products/prices,
+  honoring provided ids) and `redis` (string keys); seeded objects are retrievable
+  through the real API surface. Completes Tier 1 (control plane).
 - **Universal request recorder** (`src/request-recorder.mjs`). The launcher
   installs it on each HTTP emulator's server (zero emulator code changes),
   capturing every request — method, path, query, headers (secrets redacted),

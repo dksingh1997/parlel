@@ -113,6 +113,7 @@ export class ControlPlaneServer {
           "GET /services/:slug/state",
           "GET /services/:slug/requests",
           "POST /services/:slug/reset",
+          "POST /services/:slug/seed",
           "POST /reset",
         ],
       });
@@ -188,6 +189,24 @@ export class ControlPlaneServer {
         }
         return this.send(res, 200, { ok: true, slug });
       }
+      // POST /services/:slug/seed
+      if (method === "POST" && parts[2] === "seed" && parts.length === 3) {
+        if (typeof entry.server.seed !== "function") {
+          return this.send(res, 501, { error: "not supported", detail: `${slug} does not implement seed()` });
+        }
+        let data;
+        try {
+          data = await readJsonBody(req);
+        } catch {
+          return this.send(res, 400, { error: "invalid JSON body" });
+        }
+        try {
+          const result = entry.server.seed(data);
+          return this.send(res, 200, { ok: true, slug, seeded: result ?? null });
+        } catch (err) {
+          return this.send(res, 500, { error: "seed failed", detail: String(err?.message || err) });
+        }
+      }
     }
 
     return this.send(res, 404, { error: "not found" });
@@ -222,6 +241,26 @@ export class ControlPlaneServer {
     res.setHeader("Content-Type", "application/json");
     res.end(JSON.stringify(body));
   }
+}
+
+// Read and JSON-parse a request body. Empty body → {}.
+function readJsonBody(req) {
+  return new Promise((resolve, reject) => {
+    let data = "";
+    req.on("data", (chunk) => {
+      data += chunk;
+      if (data.length > 5 * 1024 * 1024) reject(new Error("body too large"));
+    });
+    req.on("end", () => {
+      if (!data) return resolve({});
+      try {
+        resolve(JSON.parse(data));
+      } catch (err) {
+        reject(err);
+      }
+    });
+    req.on("error", reject);
+  });
 }
 
 // Best-effort connection string for the common protocols; null when we can't
