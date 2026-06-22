@@ -16,6 +16,13 @@ function gotrueJwt(payload) {
 export class SupabaseServer {
   constructor(port = 54321) {
     this.port = port;
+    this.server = null;
+    this.reset();
+  }
+
+  // Clears all in-memory state back to empty. Used for per-test isolation
+  // and by the Parlel control plane. Idempotent, no I/O.
+  reset() {
     this.tables = new Map();
     this.users = new Map();
     // Auth (GoTrue) state — additive, keyed alongside the existing users map.
@@ -23,7 +30,6 @@ export class SupabaseServer {
     this.authPasswords = new Map();       // auth user id -> password
     this.authSessions = new Map();        // access_token -> auth user id
     this.authRefreshTokens = new Map();   // refresh_token -> auth user id
-    this.server = null;
   }
 
   start() {

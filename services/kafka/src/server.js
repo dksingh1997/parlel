@@ -19,12 +19,18 @@ const K = KafkaProtocol.API_KEYS;
 export class KafkaServer {
   constructor(port = 9092) {
     this.port = port;
-    // name -> { partitions: [{ records: [{offset, key, value}], offset }] }
-    this.topics = new Map();
-    this.groups = new Map(); // groupId -> { members, assignments }
     this.server = null;
     this.brokerId = 1;
     this.host = "localhost";
+    this.reset();
+  }
+
+  // Clears all in-memory state back to empty. Used for per-test isolation
+  // and by the Parlel control plane. Idempotent, no I/O.
+  reset() {
+    // name -> { partitions: [{ records: [{offset, key, value}], offset }] }
+    this.topics = new Map();
+    this.groups = new Map(); // groupId -> { members, assignments }
   }
 
   start() {

@@ -26,12 +26,20 @@ const C = {
 export class RabbitMQServer {
   constructor(port = 5672) {
     this.port = port;
+    this.server = null;
+    // Per-socket consumer registrations: socket -> Map<consumerTag, {queue, channel}>
+    // This is live-connection state, not data fixtures, so reset() leaves it alone.
+    this._consumers = new Map();
+    this.reset();
+  }
+
+  // Clears all in-memory data state (queues, exchanges, bindings) back to empty.
+  // Used for per-test isolation and by the Parlel control plane. Idempotent, no I/O.
+  // Live per-socket consumer registrations are intentionally preserved.
+  reset() {
     this.queues = new Map(); // name -> Array<{ body, props }>
     this.exchanges = new Map(); // name -> { type, bindings: [{ queue, key }] }
     this.bindings = new Map();
-    this.server = null;
-    // Per-socket consumer registrations: socket -> Map<consumerTag, {queue, channel}>
-    this._consumers = new Map();
     this._deliveryTag = 0;
   }
 
