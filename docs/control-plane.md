@@ -17,6 +17,9 @@ your test harness ──▶ localhost:4700   ──▶ control plane (admin: lis
 
 - **`PARLEL_CONTROL_PORT`** — control-plane port (default `4700`).
 - **`PARLEL_CONTROL=0`** — disable the control plane entirely.
+- **`PARLEL_RECORD=0`** — disable the request recorder.
+- **`PARLEL_RECORD_CAP`** — requests kept per service (default `1000`).
+- **`PARLEL_RECORD_MAX_BODY`** — max captured body bytes (default `65536`).
 
 If the control port is already in use, the launcher logs it and continues without
 the admin API — the emulators still run.
@@ -57,8 +60,42 @@ redis, mongodb, rabbitmq) return a ready-to-use URL.
 Dump the service's in-memory state. Returns `501 not supported` if the emulator
 does not implement `dump()`. Maps/Sets are serialized to plain JSON.
 
+### `GET /services/:slug/requests`
+The **request log** — every HTTP request the emulator received, captured by the
+universal recorder (no emulator code involved). `501 not supported` for TCP
+services or when recording is disabled. Filters via query params:
+
+- `method` — e.g. `POST`
+- `path` — exact or prefix match, e.g. `/v1/charges`
+- `since` — ms epoch; only requests at/after this time
+- `limit` — return at most N (newest)
+
+```json
+{ "slug": "stripe", "count": 1, "requests": [{
+  "seq": 1, "ts": 1782153233000, "method": "POST", "path": "/v1/customers",
+  "query": {}, "headers": { "authorization": "[redacted]" },
+  "requestBody": "email=a%40b.com", "requestBytes": 16,
+  "status": 200, "responseBody": "{\"id\":\"cus_...\"}", "durationMs": 0.42
+}] }
+```
+
+`Authorization`, `Cookie`, `X-Api-Key`, and any `*secret*` header are redacted.
+Bodies are capped (default 64 KB) and the buffer holds the last 1,000 requests
+per service. Configure with `PARLEL_RECORD_CAP` / `PARLEL_RECORD_MAX_BODY`.
+Disable recording entirely with `PARLEL_RECORD=0`.
+
+This is the assertion primitive for tests:
+
+```js
+const { requests } = await (await fetch(
+  "http://127.0.0.1:4700/services/stripe/requests?method=POST&path=/v1/charges",
+)).json();
+expect(requests).toHaveLength(1);
+```
+
 ### `POST /services/:slug/reset`
-Reset one service to a clean slate. `501` if the emulator has no `reset()`.
+Reset one service to a clean slate (also clears its request log). `501` if the
+emulator has no `reset()`.
 
 ```json
 { "ok": true, "slug": "stripe" }

@@ -18,6 +18,7 @@ import { createServer as createNetServer } from "node:net";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { ControlPlaneServer, CONTROL_PLANE_DEFAULT_PORT } from "./control-plane.mjs";
+import { RequestLog, attachRecorder, recordingEnabled } from "./request-recorder.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const SERVICES_DIR = join(__dirname, "..", "services");
@@ -120,7 +121,14 @@ async function startService(name) {
       ),
     ]);
     running.push(server);
-    controlPlane?.register(name, server, manifest);
+    // Install the request recorder on the emulator's HTTP server (no emulator
+    // code changes). Only HTTP/https services have a recordable request surface.
+    let reqLog = null;
+    if (recordingEnabled() && (protocol === "http" || protocol === "https") && server.server) {
+      reqLog = new RequestLog();
+      attachRecorder(server.server, reqLog);
+    }
+    controlPlane?.register(name, server, manifest, reqLog);
     log(`✓ ${name} → localhost:${port}`, null);
     return true;
   } catch (err) {
