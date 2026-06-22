@@ -101,12 +101,48 @@ emulator has no `reset()`.
 { "ok": true, "slug": "stripe" }
 ```
 
+### `POST /services/:slug/seed`
+Preload fixture data so a test can assume objects already exist (e.g. a customer
+to charge). The JSON body is passed to the emulator's `seed()`. `501 not supported`
+if the emulator has no `seed()`; `400` for invalid JSON.
+
+```bash
+curl -X POST localhost:4700/services/stripe/seed -H 'content-type: application/json' \
+  -d '{"customers":[{"id":"cus_test","email":"a@b.com"}]}'
+# -> { "ok": true, "slug": "stripe", "seeded": { "customers": 1, "products": 0, "prices": 0 } }
+```
+
+Seeded objects are retrievable through the **real API surface** — e.g.
+`GET /v1/customers/cus_test` on the Stripe emulator returns the seeded customer.
+
+Per-service seed shapes:
+
+- **stripe** — `{ customers: [...], products: [...], prices: [...] }`. Each entry
+  may include its own `id`; otherwise one is generated.
+- **redis** — `{ "key": "value", ... }` or `{ keys: { "key": "value" } }` (string keys).
+
 ### `POST /reset`
 Reset the **entire fleet** at once — the per-test isolation primitive.
 
 ```json
 { "ok": true, "reset": ["stripe", "redis"], "skipped": [], "failed": [] }
 ```
+
+## Fixtures on boot
+
+Drop a `parlel.fixtures.json` in your working directory (or point at one with
+`PARLEL_FIXTURES`). The launcher loads it after services start and calls each
+service's `seed()`:
+
+```json
+{
+  "stripe": { "customers": [{ "id": "cus_test", "email": "a@b.com" }] },
+  "redis":  { "session:abc": "user-1" }
+}
+```
+
+Services without a `seed()` (or not currently running) are skipped with a log
+line — never fatal.
 
 ## Using it in tests
 

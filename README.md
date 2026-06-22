@@ -171,6 +171,9 @@ beforeEach(() => fetch("http://127.0.0.1:4700/reset", { method: "POST" }));
 ```
 
 `GET /services` returns each service's port and a ready-to-use connection string.
+You can also inspect the request log (`GET /services/:slug/requests` — "did my
+code call the API the way I think it did?") and preload fixtures
+(`POST /services/:slug/seed`, or a `parlel.fixtures.json` loaded on boot).
 See [`docs/control-plane.md`](./docs/control-plane.md). Disable with
 `PARLEL_CONTROL=0`.
 

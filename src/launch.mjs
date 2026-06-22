@@ -86,6 +86,7 @@ function isPortFree(port) {
 }
 
 const running = [];
+const startedByName = new Map();
 let controlPlane = null;
 
 async function startService(name) {
@@ -129,6 +130,7 @@ async function startService(name) {
       attachRecorder(server.server, reqLog);
     }
     controlPlane?.register(name, server, manifest, reqLog);
+    startedByName.set(name, server);
     log(`✓ ${name} → localhost:${port}`, null);
     return true;
   } catch (err) {
@@ -158,6 +160,43 @@ async function startControlPlane() {
   }
 }
 
+// Load declarative fixtures (parlel.fixtures.json in cwd, or PARLEL_FIXTURES
+// path) and seed() each running service from them. A service without seed(),
+// or not currently running, is skipped with a log line — never fatal.
+async function loadFixtures() {
+  const path = process.env.PARLEL_FIXTURES || join(process.cwd(), "parlel.fixtures.json");
+  let raw;
+  try {
+    raw = await readFile(path, "utf8");
+  } catch {
+    return; // no fixtures file — nothing to do
+  }
+  let fixtures;
+  try {
+    fixtures = JSON.parse(raw);
+  } catch (err) {
+    log(`fixtures: ${path} is not valid JSON (${err?.message || err}) — skipping`);
+    return;
+  }
+  for (const [name, data] of Object.entries(fixtures)) {
+    const server = startedByName.get(name);
+    if (!server) {
+      log(`fixtures: ${name} not running — skipping its fixtures`, name);
+      continue;
+    }
+    if (typeof server.seed !== "function") {
+      log(`fixtures: ${name} does not implement seed() — skipping`, name);
+      continue;
+    }
+    try {
+      server.seed(data);
+      log(`fixtures: seeded ${name}`, null);
+    } catch (err) {
+      log(`fixtures: seeding ${name} failed: ${err?.message || err}`, name);
+    }
+  }
+}
+
 // ── main ─────────────────────────────────────────────────────────────────────
 async function main() {
   const services = await resolveServices();
@@ -168,6 +207,8 @@ async function main() {
   for (const name of services) {
     if (await startService(name)) ok++;
   }
+
+  await loadFixtures();
 
   log(`ready — ${ok}/${services.length} services up`);
 

@@ -122,6 +122,67 @@ export class StripeServer {
     return `${prefix}_${token(24)}`;
   }
 
+  // Preload fixture objects so a test can assume they already exist (e.g. a
+  // customer to charge). Accepts { customers: [...], products: [...], prices: [...] }.
+  // Each entry may include its own `id` (so tests can reference cus_test, etc.);
+  // otherwise one is generated. Used by the Parlel control plane / fixtures.
+  seed(data = {}) {
+    const counts = { customers: 0, products: 0, prices: 0 };
+    for (const c of data.customers || []) {
+      const id = c.id || this.nextId("cus");
+      this.customers.set(id, {
+        id,
+        object: "customer",
+        created: now(),
+        livemode: false,
+        email: c.email ?? null,
+        name: c.name ?? null,
+        description: c.description ?? null,
+        phone: c.phone ?? null,
+        address: c.address ?? null,
+        balance: c.balance !== undefined ? Number(c.balance) : 0,
+        currency: null,
+        default_source: null,
+        delinquent: false,
+        discount: null,
+        invoice_prefix: c.invoice_prefix ?? null,
+        invoice_settings: { custom_fields: null, default_payment_method: null, footer: null, rendering_options: null },
+        shipping: c.shipping ?? null,
+        tax_exempt: c.tax_exempt ?? "none",
+        metadata: c.metadata ?? {},
+      });
+      counts.customers++;
+    }
+    for (const p of data.products || []) {
+      const id = p.id || this.nextId("prod");
+      this.products.set(id, {
+        id,
+        object: "product",
+        active: p.active ?? true,
+        created: now(),
+        name: p.name ?? "Product",
+        description: p.description ?? null,
+        metadata: p.metadata ?? {},
+      });
+      counts.products++;
+    }
+    for (const pr of data.prices || []) {
+      const id = pr.id || this.nextId("price");
+      this.prices.set(id, {
+        id,
+        object: "price",
+        active: pr.active ?? true,
+        created: now(),
+        currency: pr.currency ?? "usd",
+        product: pr.product ?? null,
+        unit_amount: pr.unit_amount !== undefined ? Number(pr.unit_amount) : null,
+        metadata: pr.metadata ?? {},
+      });
+      counts.prices++;
+    }
+    return counts;
+  }
+
   start() {
     return new Promise((resolve, reject) => {
       this.server = createServer((req, res) => {
@@ -164,7 +225,7 @@ export class StripeServer {
 
     if (req.method === "GET" && parts.length === 0) return this.send(res, 200, this.root());
     if (req.method === "GET" && parts[0] === "health") return this.send(res, 200, { status: "ok" });
-    if (parts[0] === "__parlel") return this.handleControl(req, res, parts);
+    if (parts[0] === "__parlel") return this.handleControl(req, res, parts, body);
 
     if (parts[0] !== "v1") return this.send(res, 404, stripeError("Unrecognized request URL.", "invalid_request_error"));
 
@@ -675,10 +736,14 @@ export class StripeServer {
   }
 
   // ---- parlel control ----------------------------------------------------
-  handleControl(req, res, parts) {
+  handleControl(req, res, parts, body = {}) {
     if (req.method === "POST" && parts[1] === "reset") {
       this.reset();
       return this.send(res, 200, { ok: true });
+    }
+    if (req.method === "POST" && parts[1] === "seed") {
+      const counts = this.seed(body || {});
+      return this.send(res, 200, { ok: true, seeded: counts });
     }
     return this.send(res, 404, stripeError("not found"));
   }
