@@ -3,9 +3,15 @@ import { createServer } from "node:net";
 export class CassandraServer {
   constructor(port = 9042) {
     this.port = port;
+    this.server = null;
+    this.reset();
+  }
+
+  // Clears all in-memory state back to empty. Used for per-test isolation
+  // and by the Parlel control plane. Idempotent, no I/O.
+  reset() {
     this.keyspaces = new Map();
     this.tables = new Map();
-    this.server = null;
   }
 
   start() {

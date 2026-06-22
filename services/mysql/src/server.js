@@ -7,10 +7,16 @@ export class MySQLServer {
     this.user = options.user || "parlel";
     this.password = options.password || "parlel";
     this.database = options.database || "parlel";
-    this.tables = new Map();
-    this.nextId = new Map();
     this.server = null;
     this.sessionId = 1;
+    this.reset();
+  }
+
+  // Clears all in-memory state back to empty. Used for per-test isolation
+  // and by the Parlel control plane. Idempotent, no I/O.
+  reset() {
+    this.tables = new Map();
+    this.nextId = new Map();
   }
 
   start() {

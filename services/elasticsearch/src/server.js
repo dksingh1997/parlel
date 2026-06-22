@@ -4,8 +4,14 @@ import { randomBytes } from "node:crypto";
 export class ElasticsearchServer {
   constructor(port = 9200) {
     this.port = port;
-    this.indices = new Map();
     this.server = null;
+    this.reset();
+  }
+
+  // Clears all in-memory state back to empty. Used for per-test isolation
+  // and by the Parlel control plane. Idempotent, no I/O.
+  reset() {
+    this.indices = new Map();
   }
 
   start() {
