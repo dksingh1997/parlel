@@ -17,6 +17,7 @@ import { readFile, readdir } from "node:fs/promises";
 import { createServer as createNetServer } from "node:net";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { ControlPlaneServer, CONTROL_PLANE_DEFAULT_PORT } from "./control-plane.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const SERVICES_DIR = join(__dirname, "..", "services");
@@ -84,6 +85,7 @@ function isPortFree(port) {
 }
 
 const running = [];
+let controlPlane = null;
 
 async function startService(name) {
   const manifest = await manifestFor(name);
@@ -118,6 +120,7 @@ async function startService(name) {
       ),
     ]);
     running.push(server);
+    controlPlane?.register(name, server, manifest);
     log(`✓ ${name} → localhost:${port}`, null);
     return true;
   } catch (err) {
@@ -126,9 +129,31 @@ async function startService(name) {
   }
 }
 
+// Start the control plane (additive admin port). Opt out with PARLEL_CONTROL=0.
+// Port via PARLEL_CONTROL_PORT (default 4700). A bind failure is non-fatal —
+// the emulators still run; only the admin surface is unavailable.
+async function startControlPlane() {
+  if (process.env.PARLEL_CONTROL === "0") return null;
+  const port = Number(process.env.PARLEL_CONTROL_PORT) || CONTROL_PLANE_DEFAULT_PORT;
+  if (!(await isPortFree(port))) {
+    log(`control plane port ${port} in use — skipping admin API`);
+    return null;
+  }
+  const cp = new ControlPlaneServer(port);
+  try {
+    await cp.start();
+    log(`control plane → localhost:${port}`);
+    return cp;
+  } catch (err) {
+    log(`control plane failed to start: ${err?.message || err} — continuing without it`);
+    return null;
+  }
+}
+
 // ── main ─────────────────────────────────────────────────────────────────────
 async function main() {
   const services = await resolveServices();
+  controlPlane = await startControlPlane();
   log(`starting ${services.length} service(s)…`);
 
   let ok = 0;
@@ -141,6 +166,11 @@ async function main() {
   // Keep the process alive while servers are listening.
   process.on("SIGINT", async () => {
     log("shutting down…");
+    try {
+      await controlPlane?.stop();
+    } catch {
+      /* ignore */
+    }
     for (const s of running) {
       try {
         await s.stop?.();
