@@ -32,8 +32,9 @@ export class ControlPlaneServer {
   }
 
   // Called by the launcher for each emulator it successfully starts.
-  register(slug, server, manifest = {}) {
-    this.registry.set(slug, { server, manifest, startedAt: Date.now() });
+  // `log` is an optional RequestLog (request recorder); may be undefined.
+  register(slug, server, manifest = {}, log = null) {
+    this.registry.set(slug, { server, manifest, startedAt: Date.now(), log });
   }
 
   unregister(slug) {
@@ -82,6 +83,7 @@ export class ControlPlaneServer {
         reset: typeof server.reset === "function",
         dump: typeof server.dump === "function",
         seed: typeof server.seed === "function",
+        requests: !!entry.log,
       },
       connection_string: connectionString(slug, protocol, port, this.host),
     };
@@ -109,6 +111,7 @@ export class ControlPlaneServer {
           "GET /services",
           "GET /services/:slug",
           "GET /services/:slug/state",
+          "GET /services/:slug/requests",
           "POST /services/:slug/reset",
           "POST /reset",
         ],
@@ -158,6 +161,20 @@ export class ControlPlaneServer {
         }
         return this.send(res, 200, { slug, state: safeJson(state) });
       }
+      // GET /services/:slug/requests
+      if (method === "GET" && parts[2] === "requests" && parts.length === 3) {
+        if (!entry.log) {
+          return this.send(res, 501, { error: "not supported", detail: `request recording is off for ${slug}` });
+        }
+        const q = url.searchParams;
+        const requests = entry.log.query({
+          since: q.has("since") ? Number(q.get("since")) : undefined,
+          method: q.get("method") || undefined,
+          path: q.get("path") || undefined,
+          limit: q.has("limit") ? Number(q.get("limit")) : undefined,
+        });
+        return this.send(res, 200, { slug, count: requests.length, requests });
+      }
       // POST /services/:slug/reset
       if (method === "POST" && parts[2] === "reset" && parts.length === 3) {
         if (typeof entry.server.reset !== "function") {
@@ -165,6 +182,7 @@ export class ControlPlaneServer {
         }
         try {
           entry.server.reset();
+          entry.log?.clear();
         } catch (err) {
           return this.send(res, 500, { error: "reset failed", detail: String(err?.message || err) });
         }
@@ -186,6 +204,7 @@ export class ControlPlaneServer {
       }
       try {
         entry.server.reset();
+        entry.log?.clear();
         reset.push(slug);
       } catch {
         failed.push(slug);
