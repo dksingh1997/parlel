@@ -19,6 +19,7 @@
 // Pure Node built-ins only — same zero-dependency rule as the emulators.
 
 import { createServer } from "node:http";
+import { dashboardHtml } from "./dashboard.mjs";
 
 const DEFAULT_PORT = 4700;
 
@@ -93,6 +94,24 @@ export class ControlPlaneServer {
     return [...this.registry.keys()].sort().map((slug) => this.describe(slug));
   }
 
+  apiIndex() {
+    return {
+      name: "parlel-control-plane",
+      services: this.registry.size,
+      dashboard: "GET / (in a browser)",
+      endpoints: [
+        "GET /healthz",
+        "GET /services",
+        "GET /services/:slug",
+        "GET /services/:slug/state",
+        "GET /services/:slug/requests",
+        "POST /services/:slug/reset",
+        "POST /services/:slug/seed",
+        "POST /reset",
+      ],
+    };
+  }
+
   // ── routing ─────────────────────────────────────────────────────────────────
   async handle(req, res) {
     const url = new URL(req.url || "/", `http://${this.host}:${this.port}`);
@@ -101,22 +120,17 @@ export class ControlPlaneServer {
 
     if (method === "OPTIONS") return this.send(res, 204, null);
 
-    // GET /
+    // GET / — serve the HTML dashboard to browsers (Accept: text/html), and the
+    // JSON API index to programmatic clients (fetch/curl/SDKs send Accept: */*).
     if (method === "GET" && parts.length === 0) {
-      return this.send(res, 200, {
-        name: "parlel-control-plane",
-        services: this.registry.size,
-        endpoints: [
-          "GET /healthz",
-          "GET /services",
-          "GET /services/:slug",
-          "GET /services/:slug/state",
-          "GET /services/:slug/requests",
-          "POST /services/:slug/reset",
-          "POST /services/:slug/seed",
-          "POST /reset",
-        ],
-      });
+      const accept = req.headers.accept || "";
+      if (accept.includes("text/html")) return this.sendHtml(res, 200, dashboardHtml());
+      return this.send(res, 200, this.apiIndex());
+    }
+
+    // GET /api — always the JSON index, regardless of Accept.
+    if (method === "GET" && parts[0] === "api" && parts.length === 1) {
+      return this.send(res, 200, this.apiIndex());
     }
 
     // GET /healthz
@@ -240,6 +254,12 @@ export class ControlPlaneServer {
     if (body === null || status === 204) return res.end();
     res.setHeader("Content-Type", "application/json");
     res.end(JSON.stringify(body));
+  }
+
+  sendHtml(res, status, html) {
+    res.statusCode = status;
+    res.setHeader("Content-Type", "text/html; charset=utf-8");
+    res.end(html);
   }
 }
 

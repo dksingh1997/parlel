@@ -163,8 +163,13 @@ npm run probe    # boot a set and health-check every service
 ## Control plane
 
 Alongside the emulators, Parlel runs an additive admin server on
-`localhost:4700`. List what's running, inspect state, and — most usefully — reset
-every service to a clean slate between tests without restarting anything:
+`localhost:4700`. Open it **in a browser** for a live dashboard — every running
+service, its connection string, the request log, a state inspector, and reset
+buttons, auto-refreshing every 2 seconds.
+
+You can also drive it programmatically. List what's running, inspect state, and —
+most usefully — reset every service to a clean slate between tests without
+restarting anything:
 
 ```js
 beforeEach(() => fetch("http://127.0.0.1:4700/reset", { method: "POST" }));
