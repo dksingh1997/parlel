@@ -5,6 +5,7 @@
   "size_kb": 64,
   "port": 4778,
   "protocol": "http",
+  "category": "crm",
   "healthcheck": "/health",
   "startup_time_ms": 100,
   "env_vars": {

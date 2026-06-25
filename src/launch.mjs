@@ -140,7 +140,7 @@ async function startService(name) {
 }
 
 // Start the control plane (additive admin port). Opt out with PARLEL_CONTROL=0.
-// Port via PARLEL_CONTROL_PORT (default 4700). A bind failure is non-fatal —
+// Port via PARLEL_CONTROL_PORT (default 4600). A bind failure is non-fatal —
 // the emulators still run; only the admin surface is unavailable.
 async function startControlPlane() {
   if (process.env.PARLEL_CONTROL === "0") return null;

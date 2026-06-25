@@ -45,6 +45,7 @@ type Manifest = {
   name?: string;
   port?: number;
   protocol?: string;
+  category?: string;
   healthcheck?: string;
 };
 
@@ -123,6 +124,13 @@ describe("catalog manifests", () => {
       .filter((s) => s.manifest.name && s.manifest.name !== s.slug)
       .map((s) => `${s.slug} (name=${s.manifest.name})`);
     expect(mismatched, `slug/name mismatches: ${mismatched.join(", ")}`).toEqual([]);
+  });
+
+  it("every service has a non-empty category (powers `parlel ls <category>`)", () => {
+    const missing = services
+      .filter((s) => typeof s.manifest.category !== "string" || s.manifest.category.length === 0)
+      .map((s) => s.slug);
+    expect(missing, `services missing category: ${missing.join(", ")}`).toEqual([]);
   });
 
   it("ports are unique across the whole catalog", () => {

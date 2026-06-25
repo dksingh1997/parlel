@@ -72,6 +72,7 @@ A service lives in `services/<slug>/` and is exactly three files:
   "version": "1.0",
   "port": 4900,
   "protocol": "http",
+  "category": "<category>",
   "healthcheck": "/health",
   "env_vars": {
     "<SVC>_API_KEY": "parlel",
@@ -82,7 +83,10 @@ A service lives in `services/<slug>/` and is exactly three files:
 
 - `protocol`: `http`/`https` for REST, `tcp` for wire-protocol databases,
   `embedded` for no-network (e.g. sqlite).
-- `port` must be unique across the repo.
+- `port` must be unique across the repo. **Do not use `4600`** — that's the
+  control-plane default.
+- `category`: groups the service for `parlel ls <category>` (e.g. `payments`,
+  `ai`, `databases`, `aws`). Required — the conformance test enforces it.
 - `env_vars` are seeded test credentials + base URL; these mirror `.env.example`.
 
 ### 2.2 `services/<slug>/src/server.js` — the emulator contract

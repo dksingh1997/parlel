@@ -5,6 +5,7 @@
   "size_kb": 48,
   "port": 4585,
   "protocol": "http",
+  "category": "gcp",
   "healthcheck": "/_parlel/health",
   "startup_time_ms": 100,
   "env_vars": {

@@ -5,6 +5,7 @@
   "size_kb": 40,
   "port": 4594,
   "protocol": "http",
+  "category": "azure",
   "healthcheck": "/_parlel/health",
   "startup_time_ms": 100,
   "env_vars": {

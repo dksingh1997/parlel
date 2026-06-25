@@ -5,6 +5,7 @@
   "size_kb": 30,
   "port": 0,
   "protocol": "embedded",
+  "category": "databases",
   "healthcheck": "SELECT 1",
   "startup_time_ms": 0,
   "env_vars": {}

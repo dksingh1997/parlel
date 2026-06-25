@@ -1,5 +1,17 @@
 {
-  "name": "appsync", "version": "0.1", "image": "parlel/appsync:0.1", "size_kb": 80,
-  "port": 4728, "protocol": "http", "healthcheck": "/_parlel/health", "startup_time_ms": 100,
-  "env_vars": { "AWS_ACCESS_KEY_ID": "parlel", "AWS_SECRET_ACCESS_KEY": "parlel", "AWS_REGION": "us-east-1", "AWS_ENDPOINT_URL": "http://127.0.0.1:4728" }
+  "name": "appsync",
+  "version": "0.1",
+  "image": "parlel/appsync:0.1",
+  "size_kb": 80,
+  "port": 4728,
+  "protocol": "http",
+  "category": "aws",
+  "healthcheck": "/_parlel/health",
+  "startup_time_ms": 100,
+  "env_vars": {
+    "AWS_ACCESS_KEY_ID": "parlel",
+    "AWS_SECRET_ACCESS_KEY": "parlel",
+    "AWS_REGION": "us-east-1",
+    "AWS_ENDPOINT_URL": "http://127.0.0.1:4728"
+  }
 }

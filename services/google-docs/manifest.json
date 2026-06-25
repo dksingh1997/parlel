@@ -5,6 +5,7 @@
   "size_kb": 120,
   "port": 4616,
   "protocol": "http",
+  "category": "productivity",
   "healthcheck": "/_parlel/health",
   "startup_time_ms": 100,
   "env_vars": {

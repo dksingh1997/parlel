@@ -5,6 +5,7 @@
   "size_kb": 50,
   "port": 6379,
   "protocol": "tcp",
+  "category": "databases",
   "healthcheck": "PING",
   "startup_time_ms": 500,
   "env_vars": {}

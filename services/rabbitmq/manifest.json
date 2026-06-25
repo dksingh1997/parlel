@@ -5,6 +5,7 @@
   "size_kb": 90,
   "port": 5672,
   "protocol": "tcp",
+  "category": "messaging",
   "healthcheck": "rabbitmq-diagnostics -q ping",
   "startup_time_ms": 300,
   "env_vars": {

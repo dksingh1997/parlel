@@ -5,6 +5,7 @@
   "size_kb": 48,
   "port": 4868,
   "protocol": "http",
+  "category": "payments",
   "healthcheck": "/health",
   "startup_time_ms": 100,
   "env_vars": {
