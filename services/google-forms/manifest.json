@@ -5,6 +5,7 @@
   "size_kb": 120,
   "port": 4625,
   "protocol": "http",
+  "category": "forms",
   "healthcheck": "/_parlel/health",
   "startup_time_ms": 100,
   "env_vars": {

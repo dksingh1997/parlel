@@ -5,6 +5,7 @@
   "size_kb": 70,
   "port": 54321,
   "protocol": "http",
+  "category": "databases",
   "healthcheck": "/rest/v1/",
   "startup_time_ms": 200,
   "env_vars": {

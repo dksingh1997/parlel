@@ -5,6 +5,7 @@
   "size_kb": 80,
   "port": 5432,
   "protocol": "tcp",
+  "category": "databases",
   "healthcheck": "SELECT 1",
   "startup_time_ms": 200,
   "env_vars": {

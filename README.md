@@ -44,7 +44,20 @@ free, with zero risk to production.
 
 ## Quick start
 
-**With Docker (recommended — collision-safe):**
+**With the CLI (zero install):**
+
+```bash
+npx parlel up postgres redis stripe   # start (foreground)
+npx parlel up stripe -d               # or detached
+npx parlel status                     # what's running
+npx parlel ls payments                # browse the catalog by category
+npx parlel reset                      # wipe all state between tests
+npx parlel down                       # stop the detached fleet
+```
+
+See [`docs/cli.md`](./docs/cli.md) for every command.
+
+**With Docker (collision-safe):**
 
 ```bash
 git clone https://github.com/dksingh1997/parlel && cd parlel
@@ -163,7 +176,7 @@ npm run probe    # boot a set and health-check every service
 ## Control plane
 
 Alongside the emulators, Parlel runs an additive admin server on
-`localhost:4700`. Open it **in a browser** for a live dashboard — every running
+`localhost:4600`. Open it **in a browser** for a live dashboard — every running
 service, its connection string, the request log, a state inspector, and reset
 buttons, auto-refreshing every 2 seconds.
 
@@ -172,7 +185,7 @@ most usefully — reset every service to a clean slate between tests without
 restarting anything:
 
 ```js
-beforeEach(() => fetch("http://127.0.0.1:4700/reset", { method: "POST" }));
+beforeEach(() => fetch("http://127.0.0.1:4600/reset", { method: "POST" }));
 ```
 
 `GET /services` returns each service's port and a ready-to-use connection string.

@@ -5,6 +5,7 @@
   "size_kb": 64,
   "port": 4792,
   "protocol": "http",
+  "category": "productivity",
   "healthcheck": "/health",
   "startup_time_ms": 100,
   "env_vars": {

@@ -5,6 +5,7 @@
   "size_kb": 80,
   "port": 4655,
   "protocol": "http",
+  "category": "social",
   "healthcheck": "/health",
   "startup_time_ms": 100,
   "env_vars": {

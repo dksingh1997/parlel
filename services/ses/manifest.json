@@ -5,6 +5,7 @@
   "size_kb": 80,
   "port": 4570,
   "protocol": "http",
+  "category": "email",
   "healthcheck": "/_parlel/health",
   "startup_time_ms": 100,
   "env_vars": {

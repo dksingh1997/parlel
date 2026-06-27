@@ -5,11 +5,12 @@
   "type": "module",
   "license": "MIT",
   "bin": {
-    "parlel": "src/launch.mjs"
+    "parlel": "src/cli.mjs"
   },
   "scripts": {
     "up": "node scripts/up.mjs",
     "start": "node src/launch.mjs",
+    "cli": "node src/cli.mjs",
     "probe": "node scripts/probe.mjs",
     "test": "vitest run"
   },

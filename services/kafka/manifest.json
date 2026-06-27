@@ -5,6 +5,7 @@
   "size_kb": 90,
   "port": 9092,
   "protocol": "tcp",
+  "category": "messaging",
   "healthcheck": "kafka-broker-api-versions --bootstrap-server localhost:9092",
   "startup_time_ms": 200,
   "env_vars": {}

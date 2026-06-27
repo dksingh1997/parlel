@@ -5,6 +5,7 @@
   "size_kb": 90,
   "port": 4581,
   "protocol": "http",
+  "category": "databases",
   "healthcheck": "/_parlel/health",
   "startup_time_ms": 100,
   "env_vars": {

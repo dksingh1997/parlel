@@ -7,7 +7,18 @@ All notable changes to Parlel are documented here. The format is based on
 
 ### Added
 
-- **Control-plane dashboard.** Open `http://localhost:4700/` in a browser for a
+- **`parlel` CLI** (`src/cli.mjs`) — the front door to Parlel, zero dependencies.
+  Commands: `up [services] [-d]` (foreground or detached), `down`, `status`
+  (`--json`), `ls [filter]` (by slug, category, or protocol), `reset [slug]`,
+  `inspect <slug>`, `seed <file>`, `logs [-f]`, `doctor`, `help`, `--version`.
+  Detached fleets are tracked in `~/.parlel/` (override with `PARLEL_STATE_DIR`);
+  `status`/`reset`/`inspect`/`seed` drive the control plane over HTTP. Documented
+  in `docs/cli.md`. `npx parlel up postgres stripe` is the zero-install path.
+- **`category` field on every service manifest** — powers `parlel ls payments`
+  (and future grouping in the dashboard). Backfilled across all 250 services and
+  enforced by the conformance test.
+
+- **Control-plane dashboard.** Open `http://localhost:4600/` in a browser for a
   live dashboard: a grid of every running service (port, protocol, uptime,
   capability badges, connection string), a request-log viewer, a state inspector,
   and per-service + whole-fleet reset buttons, auto-refreshing every 2s. A single
@@ -32,7 +43,7 @@ All notable changes to Parlel are documented here. The format is based on
   on reset. Disable with `PARLEL_RECORD=0`; tune via `PARLEL_RECORD_CAP` /
   `PARLEL_RECORD_MAX_BODY`.
 - **Control plane** (`src/control-plane.mjs`) — a single additive admin HTTP
-  server (default `localhost:4700`) started alongside the emulators by the
+  server (default `localhost:4600`) started alongside the emulators by the
   launcher. Endpoints: `GET /`, `GET /healthz`, `GET /services`,
   `GET /services/:slug`, `GET /services/:slug/state` (via `dump()`),
   `POST /services/:slug/reset`, and `POST /reset` (reset the whole fleet — the
@@ -52,6 +63,9 @@ All notable changes to Parlel are documented here. The format is based on
 
 ### Changed
 
+- **Control-plane default port moved `4700` → `4600`.** The `ec2` emulator owns
+  `4700`, so the old default collided with it (ec2 failed to start whenever the
+  control plane was enabled). Configurable via `PARLEL_CONTROL_PORT` as before.
 - `CONTRIBUTING.md` now documents the full emulator contract (`reset()` required,
   all state initialized inside `reset()`), and the PR checklist references the
   conformance test.

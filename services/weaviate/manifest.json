@@ -5,6 +5,7 @@
   "size_kb": 56,
   "port": 4859,
   "protocol": "http",
+  "category": "search",
   "healthcheck": "/health",
   "startup_time_ms": 100,
   "env_vars": {

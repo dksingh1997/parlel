@@ -5,6 +5,7 @@
   "size_kb": 52,
   "port": 4861,
   "protocol": "http",
+  "category": "ai",
   "healthcheck": "/health",
   "startup_time_ms": 100,
   "env_vars": {

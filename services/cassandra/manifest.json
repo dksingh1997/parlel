@@ -5,6 +5,7 @@
   "size_kb": 100,
   "port": 9042,
   "protocol": "tcp",
+  "category": "databases",
   "healthcheck": "SELECT release_version FROM system.local",
   "startup_time_ms": 500,
   "env_vars": {

@@ -5,6 +5,7 @@
   "size_kb": 80,
   "port": 9200,
   "protocol": "http",
+  "category": "search",
   "healthcheck": "/_cluster/health",
   "startup_time_ms": 200,
   "env_vars": {

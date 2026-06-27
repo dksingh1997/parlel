@@ -1,7 +1,7 @@
 # Control plane
 
 Parlel runs a single **control-plane** admin server alongside the emulators
-(default `localhost:4700`). It is **additive** — it never touches the emulated
+(default `localhost:4600`). It is **additive** — it never touches the emulated
 wire protocols. It only introspects and controls the in-memory emulator instances
 the launcher started, through the emulator contract (`reset()`, optional `dump()`).
 
@@ -10,12 +10,12 @@ clean slate between test cases without restarting containers.
 
 ```
 your app / agent ──▶ localhost:<port>  ──▶ emulator (real protocol)
-your test harness ──▶ localhost:4700   ──▶ control plane (admin: list / reset / state)
+your test harness ──▶ localhost:4600   ──▶ control plane (admin: list / reset / state)
 ```
 
 ## Configuration
 
-- **`PARLEL_CONTROL_PORT`** — control-plane port (default `4700`).
+- **`PARLEL_CONTROL_PORT`** — control-plane port (default `4600`).
 - **`PARLEL_CONTROL=0`** — disable the control plane entirely.
 - **`PARLEL_RECORD=0`** — disable the request recorder.
 - **`PARLEL_RECORD_CAP`** — requests kept per service (default `1000`).
@@ -26,7 +26,7 @@ the admin API — the emulators still run.
 
 ## Dashboard
 
-Open `http://localhost:4700/` **in a browser** for a live dashboard: a grid of
+Open `http://localhost:4600/` **in a browser** for a live dashboard: a grid of
 every running service (slug, port, protocol, uptime, capability badges, and a
 copy-ready connection string), a request-log viewer, a state inspector, and
 per-service + whole-fleet **Reset** buttons. It auto-refreshes every 2 seconds.
@@ -105,7 +105,7 @@ This is the assertion primitive for tests:
 
 ```js
 const { requests } = await (await fetch(
-  "http://127.0.0.1:4700/services/stripe/requests?method=POST&path=/v1/charges",
+  "http://127.0.0.1:4600/services/stripe/requests?method=POST&path=/v1/charges",
 )).json();
 expect(requests).toHaveLength(1);
 ```
@@ -124,7 +124,7 @@ to charge). The JSON body is passed to the emulator's `seed()`. `501 not support
 if the emulator has no `seed()`; `400` for invalid JSON.
 
 ```bash
-curl -X POST localhost:4700/services/stripe/seed -H 'content-type: application/json' \
+curl -X POST localhost:4600/services/stripe/seed -H 'content-type: application/json' \
   -d '{"customers":[{"id":"cus_test","email":"a@b.com"}]}'
 # -> { "ok": true, "slug": "stripe", "seeded": { "customers": 1, "products": 0, "prices": 0 } }
 ```
@@ -166,7 +166,7 @@ line — never fatal.
 ```js
 // Reset every service before each test — clean slate, no container restart.
 beforeEach(async () => {
-  await fetch("http://127.0.0.1:4700/reset", { method: "POST" });
+  await fetch("http://127.0.0.1:4600/reset", { method: "POST" });
 });
 ```
 

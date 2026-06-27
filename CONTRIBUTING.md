@@ -14,6 +14,7 @@ A service lives in `services/<slug>/` and needs three things:
   "name": "myservice",
   "port": 4900,
   "protocol": "http",
+  "category": "payments",
   "healthcheck": "/health",
   "env_vars": {
     "MYSERVICE_API_KEY": "parlel",
@@ -24,6 +25,10 @@ A service lives in `services/<slug>/` and needs three things:
 
 - `port` — pick a free one (grep `.env.example` to avoid clashes).
 - `protocol` — `http` for REST services, `tcp` for wire-protocol databases.
+- `category` — one of: `payments`, `ai`, `databases`, `messaging`, `storage`,
+  `email`, `auth`, `crm`, `productivity`, `forms`, `analytics`, `social`, `dev`,
+  `search`, `cms`, `commerce`, `support`, `communications`, `aws`, `azure`, `gcp`,
+  `google`. Powers `parlel ls <category>`. The conformance test requires it.
 - `env_vars` — seeded test credentials + the base URL. These become the
   service's entry in `.env.example`.
 

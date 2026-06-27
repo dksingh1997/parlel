@@ -1,6 +1,6 @@
 // Parlel — control plane.
 //
-// A single, additive admin HTTP server (default localhost:4700) that sits
+// A single, additive admin HTTP server (default localhost:4600) that sits
 // ALONGSIDE the emulators. It never touches the emulated wire protocols — it
 // only introspects and controls the in-memory emulator instances the launcher
 // has already started, via the emulator contract (reset/dump).
@@ -21,7 +21,9 @@
 import { createServer } from "node:http";
 import { dashboardHtml } from "./dashboard.mjs";
 
-const DEFAULT_PORT = 4700;
+// 4600 sits just below the dense 4.7k–4.9k service-port band; the `ec2` emulator
+// owns 4700, so the control plane must not default there.
+const DEFAULT_PORT = 4600;
 
 export class ControlPlaneServer {
   constructor(port = DEFAULT_PORT, options = {}) {
