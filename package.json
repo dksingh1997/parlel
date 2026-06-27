@@ -5,12 +5,14 @@
   "type": "module",
   "license": "MIT",
   "bin": {
-    "parlel": "src/cli.mjs"
+    "parlel": "src/cli.mjs",
+    "parlel-mcp": "src/mcp.mjs"
   },
   "scripts": {
     "up": "node scripts/up.mjs",
     "start": "node src/launch.mjs",
     "cli": "node src/cli.mjs",
+    "mcp": "node src/mcp.mjs",
     "probe": "node scripts/probe.mjs",
     "test": "vitest run"
   },

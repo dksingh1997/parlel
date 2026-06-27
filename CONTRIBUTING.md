@@ -3,6 +3,9 @@
 Thanks for helping grow Parlel. The most valuable contribution is **adding a new
 service emulator** — here's how, in about five minutes.
 
+> Using Parlel as an AI agent (or writing one)? See [AGENTS.md](./AGENTS.md) for
+> the agent workflow and [SKILL.md](./SKILL.md) for the full implementation guide.
+
 ## Add a service
 
 A service lives in `services/<slug>/` and needs three things:

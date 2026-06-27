@@ -217,9 +217,23 @@ their real wire protocols straight to the port. (Kafka advertises
 Adding an emulator is a manifest + a `server.js` + a test. See
 [CONTRIBUTING.md](./CONTRIBUTING.md) — it takes about five minutes.
 
+## For AI agents
+
+Parlel ships an [MCP](https://modelcontextprotocol.io) server so agents can drive
+the emulators by tool call — start services, run code against them, then **read
+the request log to verify what the code actually did**:
+
+```bash
+npx parlel-mcp
+```
+
+See [AGENTS.md](./AGENTS.md) for the agent workflow and [docs/mcp.md](./docs/mcp.md)
+for client setup (Claude Desktop, Cursor, …).
+
 ## Roadmap
 
-- MCP server so agents can drive services by tool call.
+- ~~MCP server so agents can drive services by tool call.~~ ✅ Shipped — see
+  [docs/mcp.md](./docs/mcp.md).
 - Record / replay against real upstreams.
 - More services (open an issue to request one).
 

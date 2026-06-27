@@ -211,11 +211,20 @@ Look at `services/stripe/src/server.js` for the canonical reference.
 
 ## 4. IMPLEMENT — tooling / launcher / scripts
 
-Files: `src/launch.mjs`, `src/test-helpers.js`, `scripts/up.mjs`,
+Files: `src/fleet.mjs` (the shared start/stop/control-plane/recorder/fixtures
+engine), `src/launch.mjs` (thin wrapper over `Fleet`), `src/cli.mjs` (the
+`parlel` CLI), `src/control-plane.mjs`, `src/request-recorder.mjs`,
+`src/mcp.mjs` (the MCP server), `src/test-helpers.js`, `scripts/up.mjs`,
 `scripts/probe.mjs`. Same rule: **Node built-ins only.** These orchestrate the
-emulators and must stay dependency-free and fast. If you add a new control-plane
-capability, define the emulator-side contract (a method + a `/__parlel/*` route)
-and document it here in this skill so future services implement it from day one.
+emulators and must stay dependency-free and fast.
+
+- The launcher and the MCP server both go through **`Fleet`** — add fleet-level
+  behavior there once, not in each entry point.
+- The MCP server writes JSON-RPC to **stdout only**; all its logging goes to
+  stderr. Never `console.log` from MCP code paths.
+- If you add a new control-plane capability, define the emulator-side contract (a
+  method + a `/__parlel/*` route) and document it here in this skill so future
+  services implement it from day one.
 
 ---
 
