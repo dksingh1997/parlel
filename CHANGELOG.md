@@ -7,6 +7,16 @@ All notable changes to Parlel are documented here. The format is based on
 
 ### Added
 
+- **MCP server** (`src/mcp.mjs`) — drives Parlel from AI agents over the Model
+  Context Protocol (JSON-RPC 2.0 on stdio), zero dependencies. Eight tools:
+  `parlel_list_services`, `parlel_start_services`, `parlel_stop_services`,
+  `parlel_status`, `parlel_get_requests` (the verify step), `parlel_reset`,
+  `parlel_seed`, `parlel_inspect`. Manages its own in-process fleet, so nothing
+  needs to be running first. Run with `npx parlel-mcp`. New `AGENTS.md` (agent
+  workflow) and `docs/mcp.md` (client setup for Claude Desktop / Cursor).
+- **`src/fleet.mjs`** — the reusable fleet engine (start/stop services, control
+  plane, recorder, fixtures) now shared by the launcher and the MCP server, so
+  both behave identically. The launcher is a thin wrapper over it.
 - **`parlel` CLI** (`src/cli.mjs`) — the front door to Parlel, zero dependencies.
   Commands: `up [services] [-d]` (foreground or detached), `down`, `status`
   (`--json`), `ls [filter]` (by slug, category, or protocol), `reset [slug]`,
